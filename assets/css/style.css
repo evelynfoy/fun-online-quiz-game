@@ -9,6 +9,19 @@
    
 }
 
+/* Set base font size for ease of calculation of rems */
+html { 
+    font-size: 62.5%; 
+} 
+
+/* Applies to whole page */
+/* Remove all default margin, padding and border values for easier styling */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
 body {
     background-color: white;
     font-family: "Roboto", sans-serif;
