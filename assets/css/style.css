@@ -1,6 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+/* Global Variables */
+:root {
+    --red:#cc0000;
+    --light-grey:#c2c2c2;
+    --dark-grey:#24211E;
+   
+}
 
 body {
     background-color: white;
