@@ -5,7 +5,15 @@ It shoule provide entertainment for it's audience. It targets all ages who like 
 This is a fully responsive quiz game that supplies as many questions as user decides. It allows them to pick a level and a topic . It has a score tracking system that keeps track of the score as they go throuugh the questions and provides feedback after each question.
 They can restart the gane at any time if they choose to change the topic or level.
 
-![Responsice Mockup](media/love_maths_mockup.png)
+# Wireframes
+I have used [Balsamic](https://balsamiq.com/wireframes/ "Balsamic") to develop some wireframes for my website. 
+
+The wireframes are below:
+
+### [Phone wireframe](docs/Phone.png "Phone wireframe")
+### [Tablet Wireframe](docs/Tablet.png "Tablet wireframe")
+### [Desktop Wireframe](docs/Desktop.png "Desktop Wireframe")
+
 
 ## Features 
 
@@ -19,37 +27,36 @@ It also has a button control to move to the next question.
 
   - Featured at the top of the page, the Fun Online Quiz Game heading is easy to see for the user and advertises immediately what the site is about. It also gives the page a 'fun' feel.
 
-![Logo](media/love_maths_logo.png)
 
 - __The Prefences Area__
 
   - This section will allow the user select the topic, level and no of questions.These can be changed at ant time and the gane re-started. 
 
-![Game](media/love_maths_icons.png)
+
 
 - __The Landing Area__
 
   - This section will display a message to encourage users to play and help them get started.
 
-![score](media/love_maths_answer.png)
+
 
 - __The Score Area__
 
   - This section will allow the user to see exactly how many correct and incorrect answers they have provided. 
 
-![score](media/love_maths_answer.png)
+
 
 - __The Game Area__
 
   - This section will allow the user to play the quiz game. The user will be presented with a question and potential answers. 
 
-![Game](media/love_maths_icons.png)
+
 
 - __The Question section__
 
   - The question section is where the user will be presented with a single question at a time. 
 
-![Question](media/love_maths_question.png)
+
 
 - __The Answer section__
 
@@ -58,14 +65,14 @@ It also has a button control to move to the next question.
   - If they are incorrect a message will appear showing the result and the correct answwer. 
   - If they have reached the last question it will display the result  
 
-![Question](media/love_maths_question.png)
+
 
 - __The Button section__
 
   - The button in this section allows users to start the game, proceed to the next question or re-start the game.
   - The appropriate prompt will appear on the button as they progress.
  
-![Question](media/love_maths_question.png)
+
 
 ### Features Left to Implement
 
