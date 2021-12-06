@@ -23,11 +23,14 @@ html {
 }
 
 body {
-    background-color: white;
+    background-color: var(--red);
     font-family: "Roboto", sans-serif;
     margin: 0 auto;
 }
 
 header {
     text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    padding-top: 1rem;
 }
