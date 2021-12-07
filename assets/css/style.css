@@ -29,6 +29,13 @@ body {
     font-size: 1.5rem;
 }
 
+main {
+    background-color: var(--red);
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
 header {
     text-align: center;
     color: white;
