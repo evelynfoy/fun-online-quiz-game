@@ -23,9 +23,10 @@ html {
 }
 
 body {
-    background-color: var(--red);
+    background-color: white;
     font-family: "Roboto", sans-serif;
     margin: 0 auto;
+    font-size: 1.5rem;
 }
 
 header {
