@@ -59,8 +59,12 @@ header {
     color: var(--dark-grey);
 }
 
-.area div{
+.area div, p{
     padding: 1rem;
+}
+
+.hide {
+    display: none;
 }
 
 #button-area {
