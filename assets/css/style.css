@@ -62,3 +62,21 @@ header {
 .area div{
     padding: 1rem;
 }
+
+#button-area {
+    padding:1rem;
+    width:90%;
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+}
+
+#button {
+    font-size: 2rem;
+    background-color: var(--red);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    font-weight: bold;
+    
+}
