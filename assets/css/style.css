@@ -42,3 +42,8 @@ header {
     font-size: 1.5rem;
     padding-top: 1rem;
 }
+
+#game-area {
+    background-color: white;
+    padding: 1rem;
+}
