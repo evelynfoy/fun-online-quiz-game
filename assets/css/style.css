@@ -92,3 +92,12 @@ header {
     text-align: center;
     font-weight: bold;
 }
+
+/* For larger screens */
+
+@media screen and (min-width: 600px) {
+    #score-area, #preferences {
+        flex-direction: row;
+    }
+    
+}
