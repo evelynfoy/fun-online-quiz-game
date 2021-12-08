@@ -93,16 +93,21 @@ header {
     font-weight: bold;
 }
 
-/* For larger screens */
+/* For medium screens */
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 768px) {
     #score-area, #preferences {
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
         
     }
-    
-    #score-area div {
-        padding-right: 7rem;
+}
+
+/* For larger screens */
+
+@media screen and (min-width: 992px) {
+    .area div {
+        padding: 2rem;
     }
+    
 }
