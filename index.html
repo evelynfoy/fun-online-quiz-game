@@ -21,22 +21,22 @@
             <section id="preferences" class="area">
                 <div>
                     <label for="topic" >Topic :</label>
-                    <input list="topic" value="General Knowledge" >
+                    <input list="topic" value="General Knowledge" id="topic-choice" >
                     <datalist id="topic">
                         <option value="General Knowledge">
                     </datalist>
                 </div>
                 <div>
                     <label for="level">Level :</label>
-                    <input list="level" size="5" value="Easy">
+                    <input list="level" size="5" value="Easy" id="level-choice">
                     <datalist id="level">
                         <option value="Easy">
                     </datalist>
                 </div>
                 <div>
-                    <label for="numQuest">No of Questions :</label>
-                    <input list="numQuest" size="5" value="10">
-                    <datalist id="numQuest">
+                    <label for="num-questions">No of Questions :</label>
+                    <input list="num-questions" size="5" value="10" id="num-questions-choice">
+                    <datalist id="num-questions">
                         <option value="10">
                     </datalist>
                 </div>
@@ -102,7 +102,7 @@
 
             <!-- Button Area -->
             <section id="button-area" >
-                <button type="submit" id="button">Start Game</button>
+                <button type="submit" id="button" onclick="startGame()">Start Game</button>
             </section>
 
         </section>
