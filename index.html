@@ -21,21 +21,21 @@
             <section id="preferences" class="area">
                 <div>
                     <label for="topic" >Topic :</label>
-                    <input list="topic" >
+                    <input list="topic" value="General Knowledge" >
                     <datalist id="topic">
                         <option value="General Knowledge">
                     </datalist>
                 </div>
                 <div>
                     <label for="level">Level :</label>
-                    <input list="level" size="5">
+                    <input list="level" size="5" value="Easy">
                     <datalist id="level">
                         <option value="Easy">
                     </datalist>
                 </div>
                 <div>
                     <label for="numQuest">No of Questions :</label>
-                    <input list="numQuest" size="5">
+                    <input list="numQuest" size="5" value="10">
                     <datalist id="numQuest">
                         <option value="10">
                     </datalist>
@@ -43,29 +43,29 @@
             </section>
 
             <!-- Score Area -->
-            <section id="score-area" class="area ">
+            <section id="score-area" class="area hide">
                 <div>
-                    <label>Correct Answers: <span id="correct">5</span></label>
+                    <label>Correct Answers: <span id="correct">0</span></label>
                 </div>
                 <div>
-                    <label>Incorrect Answers: <span id="inCorrect">5</span></label>
+                    <label>Incorrect Answers: <span id="inCorrect">0</span></label>
                 </div>
             </section>
 
             <!-- Question Area -->
-            <section class="area ">
+            <section class="area hide">
                 <div id="question-number">Q1</div>
                 <div id="question">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo vel, et fugiat ipsum iste nam velit cumque minima rerum dolor dolores, neque nulla. Error aut expedita rem eos voluptatem. Eos.</div>
             </section>
 
             <!-- Motivational Heading -->
-            <section id="motivational-area" class="hide" >
+            <section id="motivational-area" >
                 <h3 id="question-number">Play our fun Quix</h3>
                 <p>Choose a topic, level and the number of questions and click start to begin</p>
             </section>
 
             <!-- Answers Area-->
-            <section id="answers" class="area ">
+            <section id="answers" class="area hide">
                 <div>
                     <input type="radio" id="one" name="answer" >
                     <label for="one">First</label>
@@ -102,7 +102,7 @@
 
             <!-- Button Area -->
             <section id="button-area" >
-                <button type="submit" id="button">Next Question</button>
+                <button type="submit" id="button">Start Game</button>
             </section>
 
         </section>
