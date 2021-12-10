@@ -15,10 +15,18 @@ async function fetchQuestionsFromAPI(topic_code, level, num_questions) {
 /* Populate global questions array with questions etc from API */
 async function getQuestions(topic_code, level, num_questions) {
   let questions = await fetchQuestionsFromAPI(topic_code, level, num_questions);
-  questions.results.forEach(question => {
-  questionsArray.push(question);
+  const modifiedQuestions = questions.results.map(q => {
+    return {
+      question: q.question,
+      correctAnswer: q.correctAnswer,
+      answers: [...q.incorrect_answers, q.correctAnswer]
+    }
   });
+  for (let i=0;i< modifiedQuestions.length; i++)  {
+    questionsArray.push(modifiedQuestions[i]);
+  }
 }
+
 
 /* Runs when Start Game button clicked */
 function startGame() {
@@ -41,6 +49,12 @@ function startGame() {
   
   /* Get questions etc from API */
   getQuestions(topic_code, level, num_questions); 
+
+  /* Show the start up screen by showing the motivational-area and hiding the questions, answers and score area */
+  document.getElementById('motivational-area').classList.add('hide');
+  document.getElementById('question-area').classList.remove('hide');
+  document.getElementById('answers-area').classList.remove('hide');
+  document.getElementById('score-area').classList.remove('hide');
   
 }
 
