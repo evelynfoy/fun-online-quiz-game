@@ -1,5 +1,5 @@
 /* Declare Global Variables */
-const questionsArray = [];
+let questionsArray = [];
 
 /* Fetch questions by calling an API and passing the preferences selected */
 async function fetchQuestionsFromAPI(topic_code, level, num_questions) {
