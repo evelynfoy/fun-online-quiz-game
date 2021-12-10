@@ -56,6 +56,27 @@ function startGame() {
   document.getElementById('answers-area').classList.remove('hide');
   document.getElementById('score-area').classList.remove('hide');
   
+  /* Populate the first question and answers */
+  document.getElementById('question-number').innerHTML = 'Q1';
+
+  // Need to wait for the answers to become available
+  setTimeout(function() {
+    document.getElementById('question').innerHTML = questionsArray[0].question;
+    let html='';
+    for (let i=0;i< questionsArray[0].answers.length; i++)  {
+      if (questionsArray[0].answers[i]) {
+        html += `<div>
+        <input type="radio" id="answer${i}" name="answer" >
+        <label for="answer${i}">${questionsArray[0].answers[i]}</label>
+    </div>`
+      }
+      
+    }
+    document.getElementById("answers-area").innerHTML = html;
+  }, 800);
+  
+  document.getElementById('button').innerText = "Next Question";
+  
 }
 
 
