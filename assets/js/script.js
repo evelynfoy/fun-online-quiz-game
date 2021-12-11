@@ -14,6 +14,7 @@ async function fetchQuestionsFromAPI(topic_code, level, num_questions) {
 
 /* Populate global questions array with questions etc from API */
 async function getQuestions(topic_code, level, num_questions) {
+  
   let questions = await fetchQuestionsFromAPI(topic_code, level, num_questions);
   const modifiedQuestions = questions.results.map(q => {
     return {
@@ -22,6 +23,10 @@ async function getQuestions(topic_code, level, num_questions) {
       answers: [...q.incorrect_answers, q.correctAnswer]
     }
   });
+
+  /* Clear the array first */
+  questionsArray = [];
+  
   for (let i=0;i< modifiedQuestions.length; i++)  {
     questionsArray.push(modifiedQuestions[i]);
   }
@@ -81,7 +86,12 @@ function startGame() {
 
 /* Runs when Next Question button clicked */
 function nextQuestion() {
-  console.log("Next Question");
+  /* Get current question number */
+  let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
+  // Increase question number 
+  questionNumber += 1;
+  // Set html to new value
+  document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
   document.getElementById('button').innerText = "Have another go!";
 }
 
