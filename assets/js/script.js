@@ -108,7 +108,12 @@ function isCorrect() {
 }
 
 function showResults() {
+  // Display the results area and update the final score value
   document.getElementById('well-done-area').classList.remove('hide');
+  document.getElementById('number-correct').innerHTML = document.getElementById('correct').innerHTML;
+  document.getElementById('total-number').innerHTML = document.getElementById('num-questions-choice').value;
+
+  // Hide the question and answers area
   document.getElementById('question-area').classList.add('hide');
   document.getElementById('answers-area').classList.add('hide');
 }
