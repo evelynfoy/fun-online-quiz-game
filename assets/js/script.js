@@ -95,7 +95,7 @@ function startGame() {
   // Need to wait for the answers to become available
   setTimeout(function () {
     document.getElementById('question').innerHTML = questionsArray[0].question;
-    getAnswers(0);
+    getAnswers(1);
   }, 800);
 
   document.getElementById('button').innerText = "Next Question";
@@ -145,15 +145,14 @@ function isCorrect() {
 
   /* Runs when Next Question button clicked */
   function nextQuestion() {
+    /* Get current question number */
+    let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
+
     if (isCorrect()) {
       //Increase Correct score
       document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
 
-      /* Get current question number */
-      let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
-
       // If more questions to show
-      console.log(questionNumber, ' ', parseInt(document.getElementById('num-questions-choice').value));
       if (questionNumber < parseInt(document.getElementById('num-questions-choice').value)) {
         // Increase question number 
         questionNumber += 1;
@@ -174,7 +173,10 @@ function isCorrect() {
     } else {
       //Increase incorrect score
       document.getElementById('in-correct').innerHTML = parseInt(document.getElementById('in-correct').innerHTML) + 1;
-      console.log('Incorrect');
+      // Show incorrect answer area and hide answers
+      document.getElementById('incorrect-answer-area').classList.remove('hide');
+      document.getElementById('answers-area').classList.remove('hide');
+      document.getElementById('correct-answer').innerText = questionsArray[questionNumber - 1].correctAnswer;
     }
   }
 
