@@ -103,73 +103,95 @@ function startGame() {
 }
 
 function isCorrect() {
-  console.log('Check if correct');
-  return true;
-}
+  // Get current question number 
+  let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
 
-function showResults() {
-  // Display the results area and update the final score value
-  document.getElementById('well-done-area').classList.remove('hide');
-  document.getElementById('number-correct').innerHTML = document.getElementById('correct').innerHTML;
-  document.getElementById('total-number').innerHTML = document.getElementById('num-questions-choice').value;
+  // Get the correct answer for that question
+  let correctAnswer = questionsArray[questionNumber].correctAnswer;
 
-  // Hide the question and answers area
-  document.getElementById('question-area').classList.add('hide');
-  document.getElementById('answers-area').classList.add('hide');
+  // Get all the radio elements for the question
+  let answers = document.getElementsByName('answer');
 
-  // Change the text on the button to have another go
-  document.getElementById('button').innerText = 'Have another go!';
-}
+  // Read through this array looking for the one selected
+  let i = 0;
+  while (!answers[i].checked) {
+    i++;
+  }
+  // Get the answer selected
+  let answerSelected = questionsArray[questionNumber-1].answers[i];
 
-/* Runs when Next Question button clicked */
-function nextQuestion() {
-
-  if (isCorrect()) {
-    //Increase Correct score
-    document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
-
-    /* Get current question number */
-    let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
-
-    // If more questions to show
-    console.log(questionNumber, ' ', parseInt(document.getElementById('num-questions-choice').value));
-    if (questionNumber < parseInt(document.getElementById('num-questions-choice').value)) {
-      // Increase question number 
-      questionNumber += 1;
-      // Set html to new value
-      document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
-
-      // Set question in html to next question in array
-      document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
-
-      // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
-      getAnswers(questionNumber);
-    } 
-    // Last question shown
-    else {
-      showResults();
-    }
-
+  // If same as correct answer then isCorrect returns true else false
+  if (correctAnswer === answerSelected) {
+    return true
   } else {
-    //Increase incorrect score
-    document.getElementById('incorrect').innerHTML = parseInt(document.getElementById('incorrect').innerHTML) + 1;
-    console.log('Incorrect');
+    return false
   }
 }
 
-function buttonClicked() {
-  switch (document.getElementById('button').innerText) {
-    case 'Start Game': {
-      startGame();
-      break;
-    }
-    case 'Next Question': {
-      nextQuestion();
-      break;
-    }
-    default: {
-      startGame();
-      break;
+
+  function showResults() {
+    // Display the results area and update the final score value
+    document.getElementById('well-done-area').classList.remove('hide');
+    document.getElementById('number-correct').innerHTML = document.getElementById('correct').innerHTML;
+    document.getElementById('total-number').innerHTML = document.getElementById('num-questions-choice').value;
+
+    // Hide the question and answers area
+    document.getElementById('question-area').classList.add('hide');
+    document.getElementById('answers-area').classList.add('hide');
+
+    // Change the text on the button to have another go
+    document.getElementById('button').innerText = 'Have another go!';
+  }
+
+  /* Runs when Next Question button clicked */
+  function nextQuestion() {
+
+    if (isCorrect()) {
+      //Increase Correct score
+      document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
+
+      /* Get current question number */
+      let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
+
+      // If more questions to show
+      console.log(questionNumber, ' ', parseInt(document.getElementById('num-questions-choice').value));
+      if (questionNumber < parseInt(document.getElementById('num-questions-choice').value)) {
+        // Increase question number 
+        questionNumber += 1;
+        // Set html to new value
+        document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
+
+        // Set question in html to next question in array
+        document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
+
+        // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
+        getAnswers(questionNumber);
+      }
+      // Last question shown
+      else {
+        showResults();
+      }
+
+    } else {
+      //Increase incorrect score
+      document.getElementById('in-correct').innerHTML = parseInt(document.getElementById('in-correct').innerHTML) + 1;
+      console.log('Incorrect');
     }
   }
-}
+
+  function buttonClicked() {
+    switch (document.getElementById('button').innerText) {
+      case 'Start Game': {
+        startGame();
+        break;
+      }
+      case 'Next Question': {
+        nextQuestion();
+        break;
+      }
+      default: {
+        startGame();
+        break;
+      }
+    }
+  }
