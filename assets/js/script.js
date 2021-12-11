@@ -110,6 +110,9 @@ function isCorrect() {
 function nextQuestion() {
 
   if (isCorrect()) {
+    //Increase Correct score
+    document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1 ;
+
     /* Get current question number */
     let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
     // Increase question number 
@@ -138,6 +141,8 @@ function nextQuestion() {
     }
     document.getElementById("answers-area").innerHTML = html;
   } else {
+    //Increase Correct score
+    document.getElementById('incorrect').innerHTML = parseInt(document.getElementById('incorrect').innerHTML) + 1 ;
     console.log('Incorrect');
   }
 }
