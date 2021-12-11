@@ -129,25 +129,47 @@ function isCorrect() {
 }
 
 
-  function showResults() {
-    // Display the results area and update the final score value
-    document.getElementById('well-done-area').classList.remove('hide');
-    document.getElementById('number-correct').innerHTML = document.getElementById('correct').innerHTML;
-    document.getElementById('total-number').innerHTML = document.getElementById('num-questions-choice').value;
+function showResults() {
+  // Display the results area and update the final score value
+  document.getElementById('well-done-area').classList.remove('hide');
+  document.getElementById('number-correct').innerHTML = document.getElementById('correct').innerHTML;
+  document.getElementById('total-number').innerHTML = document.getElementById('num-questions-choice').value;
 
-    // Hide the question and answers area
-    document.getElementById('question-area').classList.add('hide');
-    document.getElementById('answers-area').classList.add('hide');
+  // Hide the question and answers area
+  document.getElementById('question-area').classList.add('hide');
+  document.getElementById('answers-area').classList.add('hide');
 
-    // Change the text on the button to have another go
-    document.getElementById('button').innerText = 'Have another go!';
-  }
+  // Change the text on the button to have another go
+  document.getElementById('button').innerText = 'Have another go!';
+}
 
-  /* Runs when Next Question button clicked */
-  function nextQuestion() {
-    /* Get current question number */
-    let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
+/* Runs when Next Question button clicked */
+function nextQuestion() {
+  /* Get current question number */
+  let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
 
+  // Incorrect answer area showing - hide and display next question
+  if (!document.getElementById('incorrect-answer-area').classList.contains('hide')) {
+    document.getElementById('incorrect-answer-area').classList.add('hide');
+    // If more questions to show
+    if (questionNumber < parseInt(document.getElementById('num-questions-choice').value)) {
+      // Increase question number 
+      questionNumber += 1;
+      // Set html to new value
+      document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
+
+      // Set question in html to next question in array
+      document.getElementById('question').innerHTML = questionsArray[questionNumber - 1].question;
+
+      // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
+      getAnswers(questionNumber);
+    }
+    // Last question shown
+    else {
+      showResults();
+    }
+  } else {
+    // last question was correct - show next question
     if (isCorrect()) {
       //Increase Correct score
       document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
@@ -171,6 +193,7 @@ function isCorrect() {
       }
 
     } else {
+
       //Increase incorrect score
       document.getElementById('in-correct').innerHTML = parseInt(document.getElementById('in-correct').innerHTML) + 1;
       // Show incorrect answer area and hide answers
@@ -179,20 +202,21 @@ function isCorrect() {
       document.getElementById('correct-answer').innerText = questionsArray[questionNumber - 1].correctAnswer;
     }
   }
+}
 
-  function buttonClicked() {
-    switch (document.getElementById('button').innerText) {
-      case 'Start Game': {
-        startGame();
-        break;
-      }
-      case 'Next Question': {
-        nextQuestion();
-        break;
-      }
-      default: {
-        startGame();
-        break;
-      }
+function buttonClicked() {
+  switch (document.getElementById('button').innerText) {
+    case 'Start Game': {
+      startGame();
+      break;
+    }
+    case 'Next Question': {
+      nextQuestion();
+      break;
+    }
+    default: {
+      startGame();
+      break;
     }
   }
+}
