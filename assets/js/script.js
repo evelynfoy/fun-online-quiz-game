@@ -1,5 +1,14 @@
 /* Declare Global Variables */
 let questionsArray = [];
+const booleanAnswers = `<div>
+  <input type="radio" id="answer1" name="answer" >
+  <label for="answer1">True</label>
+</div>
+<div>
+  <input type="radio" id="answer1" name="answer" >
+  <label for="answer1">False</label>
+</div>`
+
 
 /* Fetch questions by calling an API and passing the preferences selected */
 async function fetchQuestionsFromAPI(topic_code, level, num_questions) {
@@ -20,7 +29,8 @@ async function getQuestions(topic_code, level, num_questions) {
     return {
       question: q.question,
       correctAnswer: q.correctAnswer,
-      answers: [...q.incorrect_answers, q.correctAnswer]
+      answers: [...q.incorrect_answers, q.correctAnswer],
+      type: q.type
     }
   });
 
@@ -68,17 +78,23 @@ function startGame() {
   // Need to wait for the answers to become available
   setTimeout(function () {
     document.getElementById('question').innerHTML = questionsArray[0].question;
-    let html = '';
-    for (let i = 0; i < questionsArray[0].answers.length; i++) {
-      if (questionsArray[0].answers[i]) {
-        html += `<div>
-        <input type="radio" id="answer${i}" name="answer" >
-        <label for="answer${i}">${questionsArray[0].answers[i]}</label>
-    </div>`
-      }
 
+    let html = '';
+    // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
+    if (questionsArray[0].type === 'boolean') {
+      html = booleanAnswers
+    } else {
+      // Loop through any defined answers provided
+      for (let i = 0; i < questionsArray[0].answers.length; i++) {
+        if (questionsArray[0].answers[i]) {
+          html += `<div>
+          <input type="radio" id="answer${i}" name="answer" >
+          <label for="answer${i}">${questionsArray[0].answers[i]}</label>
+        </div>`
+        }
+      }
+      document.getElementById("answers-area").innerHTML = html;
     }
-    document.getElementById("answers-area").innerHTML = html;
   }, 800);
 
   document.getElementById('button').innerText = "Next Question";
@@ -104,19 +120,24 @@ function nextQuestion() {
     // Set question in html to next question in array
     document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
 
-    // Set answers in html to new question
+    // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
     let html = '';
-    for (let i = 0; i < questionsArray[questionNumber].answers.length; i++) {
-      if (questionsArray[questionNumber].answers[i]) {
-        html += `<div>
-        <input type="radio" id="answer${i}" name="answer" >
-        <label for="answer${i}">${questionsArray[questionNumber].answers[i]}</label>
-    </div>`;
+    if (questionsArray[questionNumber].type === 'boolean') {
+      html = booleanAnswers;
+    } 
+    else {
+      // Loop through any defined answers provided
+      for (let i = 0; i < questionsArray[questionNumber].answers.length; i++) {
+        if (questionsArray[questionNumber].answers[i]) {
+          html += `<div>
+            <input type="radio" id="answer${i}" name="answer" >
+            <label for="answer${i}">${questionsArray[questionNumber].answers[i]}</label>
+          </div>`;
+        }
       }
     }
     document.getElementById("answers-area").innerHTML = html;
-  }
-  else {
+  } else {
     console.log('Incorrect');
   }
 }
