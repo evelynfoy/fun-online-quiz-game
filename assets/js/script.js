@@ -92,6 +92,8 @@ function nextQuestion() {
   questionNumber += 1;
   // Set html to new value
   document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
+
+  document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
   document.getElementById('button').innerText = "Have another go!";
 }
 
