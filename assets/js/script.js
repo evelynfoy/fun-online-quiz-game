@@ -79,6 +79,28 @@ function startGame() {
   
 }
 
+/* Runs when Next Question button clicked */
+function nextQuestion() {
+  console.log("Next Question");
+  document.getElementById('button').innerText = "Have another go!";
+}
+
+function buttonClicked() {
+  switch (document.getElementById('button').innerText) {
+    case 'Start Game' :  {
+      startGame();
+      break;
+    }
+    case 'Next Question' : {
+      nextQuestion(); 
+      break;
+    }
+    default : {
+      startGame();
+      break;
+    }
+  }
+}
 
 
 
