@@ -42,6 +42,23 @@ async function getQuestions(topic_code, level, num_questions) {
   }
 }
 
+function getAnswers(questionNumber) {
+  let html = '';
+  if (questionsArray[questionNumber].type === 'boolean') {
+    html = booleanAnswers;
+  } else {
+    // Loop through any defined answers provided
+    for (let i = 0; i < questionsArray[questionNumber].answers.length; i++) {
+      if (questionsArray[questionNumber].answers[i]) {
+        html += `<div>
+            <input type="radio" id="answer${i}" name="answer" >
+            <label for="answer${i}">${questionsArray[questionNumber].answers[i]}</label>
+          </div>`;
+      }
+    }
+  }
+  document.getElementById("answers-area").innerHTML = html;
+}
 
 /* Runs when Start Game button clicked */
 function startGame() {
@@ -78,23 +95,7 @@ function startGame() {
   // Need to wait for the answers to become available
   setTimeout(function () {
     document.getElementById('question').innerHTML = questionsArray[0].question;
-
-    let html = '';
-    // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
-    if (questionsArray[0].type === 'boolean') {
-      html = booleanAnswers
-    } else {
-      // Loop through any defined answers provided
-      for (let i = 0; i < questionsArray[0].answers.length; i++) {
-        if (questionsArray[0].answers[i]) {
-          html += `<div>
-          <input type="radio" id="answer${i}" name="answer" >
-          <label for="answer${i}">${questionsArray[0].answers[i]}</label>
-        </div>`
-        }
-      }
-      document.getElementById("answers-area").innerHTML = html;
-    }
+    getAnswers(0);
   }, 800);
 
   document.getElementById('button').innerText = "Next Question";
@@ -111,7 +112,7 @@ function nextQuestion() {
 
   if (isCorrect()) {
     //Increase Correct score
-    document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1 ;
+    document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
 
     /* Get current question number */
     let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
@@ -124,29 +125,14 @@ function nextQuestion() {
     document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
 
     // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
-    let html = '';
-    if (questionsArray[questionNumber].type === 'boolean') {
-      html = booleanAnswers;
-    } 
-    else {
-      // Loop through any defined answers provided
-      for (let i = 0; i < questionsArray[questionNumber].answers.length; i++) {
-        if (questionsArray[questionNumber].answers[i]) {
-          html += `<div>
-            <input type="radio" id="answer${i}" name="answer" >
-            <label for="answer${i}">${questionsArray[questionNumber].answers[i]}</label>
-          </div>`;
-        }
-      }
-    }
-    document.getElementById("answers-area").innerHTML = html;
+    getAnswers(questionNumber);
+
   } else {
     //Increase Correct score
-    document.getElementById('incorrect').innerHTML = parseInt(document.getElementById('incorrect').innerHTML) + 1 ;
+    document.getElementById('incorrect').innerHTML = parseInt(document.getElementById('incorrect').innerHTML) + 1;
     console.log('Incorrect');
   }
 }
-
 
 function buttonClicked() {
   switch (document.getElementById('button').innerText) {
