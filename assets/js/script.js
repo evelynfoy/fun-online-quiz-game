@@ -107,6 +107,12 @@ function isCorrect() {
   return true;
 }
 
+function showResults() {
+  document.getElementById('well-done-area').classList.remove('hide');
+  document.getElementById('question-area').classList.add('hide');
+  document.getElementById('answers-area').classList.add('hide');
+}
+
 /* Runs when Next Question button clicked */
 function nextQuestion() {
 
@@ -116,19 +122,28 @@ function nextQuestion() {
 
     /* Get current question number */
     let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
-    // Increase question number 
-    questionNumber += 1;
-    // Set html to new value
-    document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
 
-    // Set question in html to next question in array
-    document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
+    // If more questions to show
+    console.log(questionNumber, ' ', parseInt(document.getElementById('num-questions-choice').value));
+    if (questionNumber < parseInt(document.getElementById('num-questions-choice').value)) {
+      // Increase question number 
+      questionNumber += 1;
+      // Set html to new value
+      document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
 
-    // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
-    getAnswers(questionNumber);
+      // Set question in html to next question in array
+      document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
+
+      // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
+      getAnswers(questionNumber);
+    } 
+    // Last question shown
+    else {
+      showResults();
+    }
 
   } else {
-    //Increase Correct score
+    //Increase incorrect score
     document.getElementById('incorrect').innerHTML = parseInt(document.getElementById('incorrect').innerHTML) + 1;
     console.log('Incorrect');
   }
