@@ -85,30 +85,42 @@ function startGame() {
 
 }
 
+function isCorrect() {
+  console.log('Check if correct');
+  return true;
+}
+
 /* Runs when Next Question button clicked */
 function nextQuestion() {
-  /* Get current question number */
-  let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
-  // Increase question number 
-  questionNumber += 1;
-  // Set html to new value
-  document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
 
-  // Set question in html to next question in array
-  document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
+  if (isCorrect()) {
+    /* Get current question number */
+    let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
+    // Increase question number 
+    questionNumber += 1;
+    // Set html to new value
+    document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
 
-  // Set answers in html to new question
-  let html = '';
-  for (let i = 0; i < questionsArray[questionNumber].answers.length; i++) {
-    if (questionsArray[questionNumber].answers[i]) {
-      html += `<div>
+    // Set question in html to next question in array
+    document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
+
+    // Set answers in html to new question
+    let html = '';
+    for (let i = 0; i < questionsArray[questionNumber].answers.length; i++) {
+      if (questionsArray[questionNumber].answers[i]) {
+        html += `<div>
         <input type="radio" id="answer${i}" name="answer" >
         <label for="answer${i}">${questionsArray[questionNumber].answers[i]}</label>
-    </div>`
+    </div>`;
+      }
     }
+    document.getElementById("answers-area").innerHTML = html;
   }
-  document.getElementById("answers-area").innerHTML = html;
+  else {
+    console.log('Incorrect');
+  }
 }
+
 
 function buttonClicked() {
   switch (document.getElementById('button').innerText) {
