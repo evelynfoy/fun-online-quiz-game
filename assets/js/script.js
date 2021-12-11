@@ -28,8 +28,8 @@ async function getQuestions(topic_code, level, num_questions) {
   const modifiedQuestions = questions.results.map(q => {
     return {
       question: q.question,
-      correctAnswer: q.correctAnswer,
-      answers: [...q.incorrect_answers, q.correctAnswer],
+      correctAnswer: q.correct_answer,
+      answers: [...q.incorrect_answers, q.correct_answer],
       type: q.type
     }
   });
@@ -44,15 +44,15 @@ async function getQuestions(topic_code, level, num_questions) {
 
 function getAnswers(questionNumber) {
   let html = '';
-  if (questionsArray[questionNumber].type === 'boolean') {
+  if (questionsArray[questionNumber - 1].type === 'boolean') {
     html = booleanAnswers;
   } else {
     // Loop through any defined answers provided
-    for (let i = 0; i < questionsArray[questionNumber].answers.length; i++) {
-      if (questionsArray[questionNumber].answers[i]) {
+    for (let i = 0; i < questionsArray[questionNumber - 1].answers.length; i++) {
+      if (questionsArray[questionNumber - 1].answers[i]) {
         html += `<div>
             <input type="radio" id="answer${i}" name="answer" >
-            <label for="answer${i}">${questionsArray[questionNumber].answers[i]}</label>
+            <label for="answer${i}">${questionsArray[questionNumber - 1].answers[i]}</label>
           </div>`;
       }
     }
@@ -107,7 +107,7 @@ function isCorrect() {
   let questionNumber = parseInt(document.getElementById('question-number').innerHTML.substring(1));
 
   // Get the correct answer for that question
-  let correctAnswer = questionsArray[questionNumber].correctAnswer;
+  let correctAnswer = questionsArray[questionNumber - 1].correctAnswer;
 
   // Get all the radio elements for the question
   let answers = document.getElementsByName('answer');
@@ -118,7 +118,7 @@ function isCorrect() {
     i++;
   }
   // Get the answer selected
-  let answerSelected = questionsArray[questionNumber-1].answers[i];
+  let answerSelected = questionsArray[questionNumber - 1].answers[i];
 
   // If same as correct answer then isCorrect returns true else false
   if (correctAnswer === answerSelected) {
@@ -145,7 +145,6 @@ function isCorrect() {
 
   /* Runs when Next Question button clicked */
   function nextQuestion() {
-
     if (isCorrect()) {
       //Increase Correct score
       document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
@@ -162,7 +161,7 @@ function isCorrect() {
         document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
 
         // Set question in html to next question in array
-        document.getElementById('question').innerHTML = questionsArray[questionNumber].question;
+        document.getElementById('question').innerHTML = questionsArray[questionNumber - 1].question;
 
         // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
         getAnswers(questionNumber);
