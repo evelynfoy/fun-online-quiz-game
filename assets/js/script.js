@@ -116,6 +116,9 @@ function showResults() {
   // Hide the question and answers area
   document.getElementById('question-area').classList.add('hide');
   document.getElementById('answers-area').classList.add('hide');
+
+  // Change the text on the button to have another go
+  document.getElementById('button').innerText = 'Have another go!';
 }
 
 /* Runs when Next Question button clicked */
