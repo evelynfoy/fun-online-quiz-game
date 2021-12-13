@@ -62,7 +62,7 @@ It also has a button control to move to the next question.
 
   - The question section is where the user will be presented with a single question at a time. 
 
-
+![Question Area](docs/images/QuestionArea.png)
 
 - __The Answer section__
 
