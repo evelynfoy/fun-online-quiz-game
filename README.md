@@ -71,7 +71,7 @@ It also has a button control to move to the next question.
   - If they are incorrect a message will appear showing the result and the correct answwer. 
   - If they have reached the last question it will display the result  
 
-
+![Answers Area](docs/images/AnswersArea.png)
 
 - __The Button section__
 
