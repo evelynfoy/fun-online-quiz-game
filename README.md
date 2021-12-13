@@ -64,6 +64,7 @@ It also has a button control to move to the next question.
 
 ![Question Area](docs/images/QuestionArea.png)
 
+
 - __The Answer section__
 
   - The answer section is where the user will be presented with a number of potential answers in a radio button format.
@@ -72,6 +73,12 @@ It also has a button control to move to the next question.
   - If they have reached the last question it will display the result  
 
 ![Answers Area](docs/images/AnswersArea.png)
+
+- __The Incorrect Answer section__
+
+  - The incorrect answer section appears when the wrong answer is selected and displays the right answer.
+
+![Incorrect Answer Area](docs/images/IncorrectAnswerArea.png)
 
 - __The Button section__
 
