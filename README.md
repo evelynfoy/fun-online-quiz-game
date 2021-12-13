@@ -1,7 +1,7 @@
 # Fun Online Quiz Game
 
 This project is to build a fun Online Quiz game.
-It shoule provide entertainment for it's audience. It targets all ages who like quizes.
+It should provide entertainment for it's audience. It targets all ages who like quizes.
 This is a fully responsive quiz game that supplies as many questions as user decides. It allows them to pick a level and a topic . It has a score tracking system that keeps track of the score as they go throuugh the questions and provides feedback after each question.
 They can restart the gane at any time if they choose to change the topic or level.
 
@@ -27,6 +27,7 @@ It also has a button control to move to the next question.
 
   - Featured at the top of the page, the Fun Online Quiz Game heading is easy to see for the user and advertises immediately what the site is about. It also gives the page a 'fun' feel.
 
+![Heading](docs/images/Heading.png)
 
 - __The Prefences Area__
 
