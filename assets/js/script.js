@@ -163,7 +163,7 @@ function nextQuestion() {
   } else {
     // last question was correct - show next question
     if (isCorrect()) {
-      
+
       //Increase Correct score
       document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
       displayNextQuestion(questionNumber);
@@ -188,6 +188,15 @@ function buttonClicked() {
     }
     case 'Next Question': {
       nextQuestion();
+      break;
+    }
+    case 'Have another go!': {
+      document.getElementById('well-done-area').classList.add('hide');
+      document.getElementById('incorrect-answer-area').classList.add('hide');
+      document.getElementById('button').innerText = 'Next Question';
+      document.getElementById('correct').innerText = '0';
+      document.getElementById('in-correct').innerText = '0';
+      startGame();
       break;
     }
     default: {
