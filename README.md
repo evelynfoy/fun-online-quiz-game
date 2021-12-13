@@ -5,6 +5,9 @@ It should provide entertainment for it's audience. It targets all ages who like 
 This is a fully responsive quiz game that supplies as many questions as user decides. It allows them to pick a level and a topic . It has a score tracking system that keeps track of the score as they go throuugh the questions and provides feedback after each question.
 They can restart the gane at any time if they choose to change the topic or level.
 
+
+![Responsive Displays](docs/images/FOQG_mockup.png)
+
 # Wireframes
 I have used [Balsamic](https://balsamiq.com/wireframes/ "Balsamic") to develop some wireframes for my website. 
 
@@ -79,6 +82,13 @@ It also has a button control to move to the next question.
   - The incorrect answer section appears when the wrong answer is selected and displays the right answer.
 
 ![Incorrect Answer Area](docs/images/IncorrectAnswerArea.png)
+
+
+- __The Well Done section__
+
+  - The well done section appears at the end and displays the score and a congratulatory message..
+
+![Well Done Area](docs/images/WellDoneArea.png)
 
 - __The Button section__
 
