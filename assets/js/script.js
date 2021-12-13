@@ -130,6 +130,26 @@ function showResults() {
   document.getElementById('button').innerText = 'Have another go!';
 }
 
+function displayNextQuestion(questionNumber) {
+
+  if (questionNumber < parseInt(document.getElementById('num-questions-choice').value)) {
+    // Increase question number 
+    questionNumber += 1;
+    // Set html to new value
+    document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
+
+    // Set question in html to next question in array
+    document.getElementById('question').innerHTML = questionsArray[questionNumber - 1].question;
+
+    // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
+    getAnswers(questionNumber);
+  }
+  // Last question shown
+  else {
+    showResults();
+  }
+}
+
 /* Runs when Next Question button clicked */
 function nextQuestion() {
   /* Get current question number */
@@ -139,45 +159,14 @@ function nextQuestion() {
   if (!document.getElementById('incorrect-answer-area').classList.contains('hide')) {
     document.getElementById('incorrect-answer-area').classList.add('hide');
     // If more questions to show
-    if (questionNumber < parseInt(document.getElementById('num-questions-choice').value)) {
-      // Increase question number 
-      questionNumber += 1;
-      // Set html to new value
-      document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
-
-      // Set question in html to next question in array
-      document.getElementById('question').innerHTML = questionsArray[questionNumber - 1].question;
-
-      // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
-      getAnswers(questionNumber);
-    }
-    // Last question shown
-    else {
-      showResults();
-    }
+    displayNextQuestion(questionNumber);
   } else {
     // last question was correct - show next question
     if (isCorrect()) {
+      
       //Increase Correct score
       document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
-
-      // If more questions to show
-      if (questionNumber < parseInt(document.getElementById('num-questions-choice').value)) {
-        // Increase question number 
-        questionNumber += 1;
-        // Set html to new value
-        document.getElementById('question-number').innerHTML = `Q${questionNumber}`;
-
-        // Set question in html to next question in array
-        document.getElementById('question').innerHTML = questionsArray[questionNumber - 1].question;
-
-        // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
-        getAnswers(questionNumber);
-      }
-      // Last question shown
-      else {
-        showResults();
-      }
+      displayNextQuestion(questionNumber);
 
     } else {
 
