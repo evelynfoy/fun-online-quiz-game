@@ -1,14 +1,5 @@
 /* Declare Global Variables */
 let questionsArray = [];
-const booleanAnswers = `<div>
-  <input type="radio" id="answer1" name="answer" >
-  <label for="answer1">True</label>
-</div>
-<div>
-  <input type="radio" id="answer1" name="answer" >
-  <label for="answer1">False</label>
-</div>`
-
 
 /* Fetch questions by calling an API and passing the preferences selected */
 async function fetchQuestionsFromAPI(topic_code, level, num_questions) {
@@ -44,17 +35,13 @@ async function getQuestions(topic_code, level, num_questions) {
 
 function getAnswers(questionNumber) {
   let html = '';
-  if (questionsArray[questionNumber - 1].type === 'boolean') {
-    html = booleanAnswers;
-  } else {
-    // Loop through any defined answers provided
-    for (let i = 0; i < questionsArray[questionNumber - 1].answers.length; i++) {
-      if (questionsArray[questionNumber - 1].answers[i]) {
-        html += `<div>
+
+  for (let i = 0; i < questionsArray[questionNumber - 1].answers.length; i++) {
+    if (questionsArray[questionNumber - 1].answers[i]) {
+      html += `<div>
             <input type="radio" id="answer${i}" name="answer" >
             <label for="answer${i}">${questionsArray[questionNumber - 1].answers[i]}</label>
           </div>`;
-      }
     }
   }
   document.getElementById("answers-area").innerHTML = html;
