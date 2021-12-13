@@ -34,13 +34,14 @@ It also has a button control to move to the next question.
   - This section will allow the user select the topic, level and no of questions.These can be changed at any time and the game re-started. 
   - The options stack on top of each other on small screens like phones.
 
-![Heading](docs/images/Preferences-Phone.png)
-![Heading](docs/images/Preferences.png)
+![Preferences](docs/images/Preferences-Phone.png)
+![Preferences](docs/images/Preferences.png)
 
 - __The Landing Area__
 
   - This section will display a message to encourage users to play and help them get started.
 
+![Landing Area](docs/images/LandingArea.png)
 
 
 - __The Score Area__
