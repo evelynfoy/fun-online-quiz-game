@@ -47,8 +47,10 @@ It also has a button control to move to the next question.
 - __The Score Area__
 
   - This section will allow the user to see exactly how many correct and incorrect answers they have provided. 
+  - The correct and incorrect scores stack on top of each other on small screens like phones.
 
-
+![Score Area](docs/images/ScoreArea-Phone.png)
+![Score Area](docs/images/ScoreArea.png)
 
 - __The Game Area__
 
