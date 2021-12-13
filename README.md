@@ -31,9 +31,11 @@ It also has a button control to move to the next question.
 
 - __The Prefences Area__
 
-  - This section will allow the user select the topic, level and no of questions.These can be changed at ant time and the gane re-started. 
+  - This section will allow the user select the topic, level and no of questions.These can be changed at any time and the game re-started. 
+  - The options stack on top of each other on small screens like phones.
 
-
+![Heading](docs/images/Preferences-Phone.png)
+![Heading](docs/images/Preferences.png)
 
 - __The Landing Area__
 
