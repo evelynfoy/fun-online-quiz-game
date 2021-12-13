@@ -31,6 +31,11 @@ async function getQuestions(topic_code, level, num_questions) {
   for (let i = 0; i < modifiedQuestions.length; i++) {
     questionsArray.push(modifiedQuestions[i]);
   }
+
+  /* Populate the first question and answers */
+  document.getElementById('question-number').innerHTML = 'Q1';
+  document.getElementById('question').innerHTML = questionsArray[0].question;
+  getAnswers(1);
 }
 
 function getAnswers(questionNumber) {
@@ -76,15 +81,7 @@ function startGame() {
   document.getElementById('answers-area').classList.remove('hide');
   document.getElementById('score-area').classList.remove('hide');
 
-  /* Populate the first question and answers */
-  document.getElementById('question-number').innerHTML = 'Q1';
-
-  // Need to wait for the answers to become available
-  setTimeout(function () {
-    document.getElementById('question').innerHTML = questionsArray[0].question;
-    getAnswers(1);
-  }, 800);
-
+  // Set button text to 'Next Question'
   document.getElementById('button').innerText = "Next Question";
 
 }
