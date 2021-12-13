@@ -77,7 +77,10 @@ It also has a button control to move to the next question.
 
   - The button in this section allows users to start the game, proceed to the next question or re-start the game.
   - The appropriate prompt will appear on the button as they progress.
- 
+
+![Button Area Start](docs/images/ButtonAreaStart.png) 
+![Button Area Next Question](docs/images/ButtonAreaNextQuestion.png)
+![Button Area Have another go](docs/images/ButtonAreaHaveAnotherGo.png)  
 
 
 ### Features Left to Implement
