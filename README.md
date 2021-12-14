@@ -102,7 +102,7 @@ It also has a button control to move to the next question.
 
 ### Features Left to Implement
 
-- Another feature idea
+- Add another game like matching images.
 
 ## Testing 
 
