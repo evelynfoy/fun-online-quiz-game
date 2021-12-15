@@ -1,9 +1,16 @@
+
+"use strict"
+
 /* Declare Global Variables */
 let questionsArray = [];
 
+
 /* Fetch questions by calling an API and passing the preferences selected */
-async function fetchQuestionsFromAPI(topic_code, level, num_questions) {
-  let url = `https://opentdb.com/api.php?amount=${num_questions}&category=${topic_code}&difficulty=${level}`;
+async function fetchDataFromAPI(mode, topic_code, level, num_questions) {
+  const questionsUrl = `https://opentdb.com/api.php?amount=${num_questions}&category=${topic_code}&difficulty=${level}`;
+  const categoriesUrl = 'https://opentdb.com/api_category.php';
+
+  let url = (mode === "categories") ? categoriesUrl : questionsUrl ;
   try {
     let res = await fetch(url);
     return await res.json();
@@ -15,7 +22,7 @@ async function fetchQuestionsFromAPI(topic_code, level, num_questions) {
 /* Populate global questions array with questions etc from API */
 async function getQuestions(topic_code, level, num_questions) {
 
-  let questions = await fetchQuestionsFromAPI(topic_code, level, num_questions);
+  let questions = await fetchDataFromAPI("questions", topic_code, level, num_questions);
   const modifiedQuestions = questions.results.map(q => {
     return {
       question: q.question,
@@ -202,3 +209,18 @@ function buttonClicked() {
     }
   }
 }
+
+/* Populate categories from API */
+async function getCategories(topic_code, level, num_questions) {
+
+  let categories = await fetchDataFromAPI("categories", topic_code, level, num_questions);
+  
+  let html = '<select name="topic" value="General Knowledge" id="topic-choice" >';
+  categories.trivia_categories.forEach(category => {
+    html+= `<option value="${category.id}">${category.name}</option>`;
+  });
+  document.getElementById('topic-choice').innerHTML = html;
+}
+
+// Load categories from API as topics
+getCategories();
