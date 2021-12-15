@@ -15,10 +15,10 @@
         </header>
 
         <!-- Game Area -->
-        <section id="game-area">
+        <div id="game-area">
 
             <!-- Preferences -->
-            <section id="preferences" class="area">
+            <div id="preferences" class="area">
                 <div>
                     <label for="topic-choice" >Topic :</label>
                     <input list="topic" value="General Knowledge" id="topic-choice" >
@@ -38,55 +38,55 @@
                     <label for="num-questions-choice">No of Questions :</label>
                     <input type="number" value="10" id="num-questions-choice" min="1" max="50" >
                 </div>
-            </section>
+            </div>
 
             <!-- Score Area -->
-            <section id="score-area" class="area hide">
+            <div id="score-area" class="area hide">
                 <div>
                     <label>Correct Answers: <span id="correct">0</span></label>
                 </div>
                 <div>
                     <label>Incorrect Answers: <span id="in-correct">0</span></label>
                 </div>
-            </section>
+            </div>
 
             <!-- Question Area -->
-            <section class="area hide" id="question-area">
+            <div class="area hide" id="question-area">
                 <div id="question-number"></div>
                 <div id="question"></div>
-            </section>
+            </div>
 
             <!-- Motivational Heading -->
-            <section id="motivational-area" >
+            <div id="motivational-area" >
                 <h3>Play our fun Quiz</h3>
                 <p>Choose a topic, level and the number of questions and click start to begin</p>
-            </section>
+            </div>
 
             <!-- Answers Area-->
-            <section id="answers-area" class="area hide">
+            <div id="answers-area" class="area hide">
                 
-            </section>
+            </div>
 
             <!-- Incorrect answer Area-->
-            <section id="incorrect-answer-area" class="area hide">
+            <div id="incorrect-answer-area" class="area hide">
                 <p>Incorrect.</p>
                 <p>The correct answer is ....</p>
                 <p id="correct-answer"></p>
                 
-            </section>
+            </div>
 
             <!-- Well done Area-->
-            <section id="well-done-area" class="area hide">
+            <div id="well-done-area" class="area hide">
                 <p>Well done.</p>
                 <p>You scored <span id="number-correct">X</span> out of <span id="total-number">Y</span>.</p>
-            </section>
+            </div>
 
             <!-- Button Area -->
-            <section id="button-area" >
+            <div id="button-area" >
                 <button type="submit" id="button" onclick="buttonClicked()">Start Game</button>
-            </section>
+            </div>
 
-        </section>
+        </div>
 
     </main>
     
