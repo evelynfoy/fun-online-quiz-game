@@ -186,17 +186,14 @@ function buttonClicked() {
       nextQuestion();
       break;
     }
-    case 'Have another go!': {
+    // Have another go  
+    default: {
       document.getElementById('well-done-area').classList.add('hide');
       document.getElementById('incorrect-answer-area').classList.add('hide');
-      document.getElementById('button').innerText = 'Next Question';
+      document.getElementById('motivational-area').classList.remove('hide');
+      document.getElementById('button').innerText = 'Start Game';
       document.getElementById('correct').innerText = '0';
       document.getElementById('in-correct').innerText = '0';
-      startGame();
-      break;
-    }
-    default: {
-      startGame();
       break;
     }
   }
