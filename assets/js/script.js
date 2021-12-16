@@ -153,6 +153,7 @@ function nextQuestion() {
   // Incorrect answer area showing - hide and display next question
   if (!document.getElementById('incorrect-answer-area').classList.contains('hide')) {
     document.getElementById('incorrect-answer-area').classList.add('hide');
+    document.getElementById('answers-area').classList.remove('hide');
     // If more questions to show
     displayNextQuestion(questionNumber);
   } else {
