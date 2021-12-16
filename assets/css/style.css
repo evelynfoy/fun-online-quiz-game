@@ -76,6 +76,10 @@ header {
     padding: 6rem;
 }
 
+#incorrect-answer-area p {
+    color: var(--red);
+}
+
 #button-area {
     padding:1rem;
     width:90%;
