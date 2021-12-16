@@ -169,7 +169,7 @@ function nextQuestion() {
       document.getElementById('in-correct').innerHTML = parseInt(document.getElementById('in-correct').innerHTML) + 1;
       // Show incorrect answer area and hide answers
       document.getElementById('incorrect-answer-area').classList.remove('hide');
-      document.getElementById('answers-area').classList.remove('hide');
+      document.getElementById('answers-area').classList.add('hide');
       document.getElementById('correct-answer').innerText = questionsArray[questionNumber - 1].correctAnswer;
     }
   }
