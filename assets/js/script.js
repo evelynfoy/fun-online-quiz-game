@@ -6,8 +6,8 @@ let questionsArray = [];
 
 
 /* Fetch questions by calling an API and passing the preferences selected */
-async function fetchDataFromAPI(mode, topic_code, level, num_questions) {
-  const questionsUrl = `https://opentdb.com/api.php?amount=${num_questions}&category=${topic_code}&difficulty=${level}`;
+async function fetchDataFromAPI(mode, topicCode, level, numQuestions) {
+  const questionsUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level}`;
   const categoriesUrl = 'https://opentdb.com/api_category.php';
 
   let url = (mode === "categories") ? categoriesUrl : questionsUrl ;
@@ -20,9 +20,9 @@ async function fetchDataFromAPI(mode, topic_code, level, num_questions) {
 }
 
 /* Populate global questions array with questions etc from API */
-async function getQuestions(topic_code, level, num_questions) {
+async function getQuestions(topicCode, level, numQuestions) {
 
-  let questions = await fetchDataFromAPI("questions", topic_code, level, num_questions);
+  let questions = await fetchDataFromAPI("questions", topicCode, level, numQuestions);
   const modifiedQuestions = questions.results.map(q => {
     return {
       question: q.question,
@@ -64,14 +64,14 @@ function startGame() {
   /* Get Preferences */
 
   /* Get topic chosen from html*/
-  let topic_code = document.getElementById('topic-choice').value;
+  let topicCode = document.getElementById('topic-choice').value;
 
   /* Get level and number of questions from html also */
   let level = document.getElementById('level-choice').value;
-  let num_questions = document.getElementById('num-questions-choice').value;
+  let numQuestions = document.getElementById('num-questions-choice').value;
 
   /* Get questions etc from API */
-  getQuestions(topic_code, level, num_questions);
+  getQuestions(topicCode, level, numQuestions);
 
   /* Show the start up screen by showing the motivational-area and hiding the questions, answers and score area */
   document.getElementById('motivational-area').classList.add('hide');
@@ -202,9 +202,9 @@ function buttonClicked() {
 }
 
 /* Populate categories from API */
-async function getCategories(topic_code, level, num_questions) {
+async function getCategories(topicCode, level, numQuestions) {
 
-  let categories = await fetchDataFromAPI("categories", topic_code, level, num_questions);
+  let categories = await fetchDataFromAPI("categories", topicCode, level, numQuestions);
   
   let html = '<select name="topic" value="General Knowledge" id="topic-choice" >';
   categories.trivia_categories.forEach(category => {
