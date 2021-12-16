@@ -82,6 +82,12 @@ function startGame() {
   // Set button text to 'Next Question'
   document.getElementById('button').innerText = "Next Question";
 
+  // Enable preferences
+  document.getElementById('topic-choice').disabled = true;
+  document.getElementById('level-choice').disabled = true;
+  document.getElementById('num-questions-choice').disabled = true;
+  
+
 }
 
 function isCorrect() {
@@ -194,6 +200,11 @@ function buttonClicked() {
       document.getElementById('button').innerText = 'Start Game';
       document.getElementById('correct').innerText = '0';
       document.getElementById('in-correct').innerText = '0';
+      
+      // Disable prefernces
+      document.getElementById('topic-choice').disabled = false;
+      document.getElementById('level-choice').disabled = false;
+      document.getElementById('num-questions-choice').disabled = false;
       break;
     }
   }
