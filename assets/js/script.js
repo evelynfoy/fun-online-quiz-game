@@ -224,3 +224,6 @@ async function getCategories(topicCode, level, numQuestions) {
 
 // Load categories from API as topics
 getCategories();
+
+// Set button click function
+document.getElementById('button').addEventListener('click',buttonClicked);
