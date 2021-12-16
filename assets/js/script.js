@@ -50,10 +50,18 @@ function getAnswers(questionNumber) {
 
   for (let i = 0; i < questionsArray[questionNumber - 1].answers.length; i++) {
     if (questionsArray[questionNumber - 1].answers[i]) {
+      if (i === 0) {
+        html += `<div>
+            <input type="radio" id="answer${i}" name="answer" checked>
+            <label for="answer${i}">${questionsArray[questionNumber - 1].answers[i]}</label>
+          </div>`;
+      }
+      else {
       html += `<div>
             <input type="radio" id="answer${i}" name="answer" >
             <label for="answer${i}">${questionsArray[questionNumber - 1].answers[i]}</label>
           </div>`;
+      }
     }
   }
   document.getElementById("answers-area").innerHTML = html;
@@ -164,21 +172,21 @@ function nextQuestion() {
     displayNextQuestion(questionNumber);
   } else {
     // last question was correct - show next question
-    if (isCorrect()) {
+          if (isCorrect()) {
 
-      //Increase Correct score
-      document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
-      displayNextQuestion(questionNumber);
+        //Increase Correct score
+        document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
+        displayNextQuestion(questionNumber);
 
-    } else {
+      } else {
 
-      //Increase incorrect score
-      document.getElementById('in-correct').innerHTML = parseInt(document.getElementById('in-correct').innerHTML) + 1;
-      // Show incorrect answer area and hide answers
-      document.getElementById('incorrect-answer-area').classList.remove('hide');
-      document.getElementById('answers-area').classList.add('hide');
-      document.getElementById('correct-answer').innerText = questionsArray[questionNumber - 1].correctAnswer;
-    }
+        //Increase incorrect score
+        document.getElementById('in-correct').innerHTML = parseInt(document.getElementById('in-correct').innerHTML) + 1;
+        // Show incorrect answer area and hide answers
+        document.getElementById('incorrect-answer-area').classList.remove('hide');
+        document.getElementById('answers-area').classList.add('hide');
+        document.getElementById('correct-answer').innerText = questionsArray[questionNumber - 1].correctAnswer;
+      }
   }
 }
 
