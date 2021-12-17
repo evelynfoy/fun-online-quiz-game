@@ -40,6 +40,9 @@ async function getQuestions(topicCode, level, numQuestions) {
     questionsArray.push(modifiedQuestions[i]);
   }
 
+  // Set current question to 1
+  currentQuestion = 1;
+  
   /* Populate the first question and answers */
   document.getElementById('question-number').innerHTML = 'Q1';
   document.getElementById('question').innerHTML = questionsArray[0].question;
@@ -88,8 +91,8 @@ function startGame() {
   document.getElementById('answers-area').classList.remove('hide');
   document.getElementById('score-area').classList.remove('hide');
 
-  // Set button text to 'Next Question'
-  document.getElementById('button').innerText = "Next Question";
+  // Set button text to 'Submit Answer'
+  document.getElementById('button').innerText = "Submit Answer";
 
   // Enable preferences
   document.getElementById('topic-choice').disabled = true;
@@ -151,6 +154,9 @@ function displayNextQuestion() {
 
     // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
     getAnswers(currentQuestion);
+
+    // Set button text to 'Submit Answer'
+    document.getElementById('button').innerText = "Submit Answer";
   }
   // Last question shown
   else {
@@ -159,47 +165,68 @@ function displayNextQuestion() {
 }
 
 /* Runs when Next Question button clicked */
+/* Runs when Next Question button clicked */
 function nextQuestion() {
-  /* Get current question number */
-  let currentQuestion = parseInt(document.getElementById('question-number').innerHTML.substring(1));
 
-  // Incorrect answer area showing - hide and display next question
-  if (!document.getElementById('incorrect-answer-area').classList.contains('hide')) {
-    document.getElementById('incorrect-answer-area').classList.add('hide');
-    document.getElementById('answers-area').classList.remove('hide');
-    // If more questions to show
-    displayNextQuestion(currentQuestion);
+  // Hide incorrect answer area and show answers area
+  document.getElementById('incorrect-answer-area').classList.add('hide');
+  document.getElementById('answers-area').classList.remove('hide');
+
+  // display next question
+  displayNextQuestion();
+
+}
+
+/* Runs when Next Question button clicked */
+function submitAnswer() {
+
+  // last question was correct - show next question
+  if (isCorrect()) {
+
+    //Increase Correct score
+    const correctScore = document.getElementById('correct');
+    correctScore.innerHTML = parseInt(correctScore.innerHTML) + 1;
+    displayNextQuestion();
+
+    // Set button text on html page
+    //document.getElementById('button').innerText = 'Submit Answer';
+
   } else {
-    // last question was correct - show next question
-          if (isCorrect()) {
 
-        //Increase Correct score
-        document.getElementById('correct').innerHTML = parseInt(document.getElementById('correct').innerHTML) + 1;
-        displayNextQuestion(currentQuestion);
+    //Increase incorrect score
+    const incorrectScore = document.getElementById('in-correct');
+    incorrectScore.innerHTML = parseInt(incorrectScore.innerHTML) + 1;
 
-      } else {
+    // Set correct answer on html page
+    document.getElementById('correct-answer').innerText = questionsArray[currentQuestion - 1].correctAnswer;;
 
-        //Increase incorrect score
-        document.getElementById('in-correct').innerHTML = parseInt(document.getElementById('in-correct').innerHTML) + 1;
-        // Show incorrect answer area and hide answers
-        document.getElementById('incorrect-answer-area').classList.remove('hide');
-        document.getElementById('answers-area').classList.add('hide');
-        document.getElementById('correct-answer').innerText = questionsArray[currentQuestion - 1].correctAnswer;
-      }
+    // Show incorrect answer area and hide answers
+    document.getElementById('incorrect-answer-area').classList.remove('hide');
+    document.getElementById('answers-area').classList.add('hide');
+
+    // Set button text on html page
+    document.getElementById('button').innerText = 'Next Question';
   }
 }
 
 function buttonClicked() {
-  switch (document.getElementById('button').innerText) {
+  //Get current button text to decide action
+  const buttonText = document.getElementById('button').innerText;
+
+  switch (buttonText) {
     case 'Start Game': {
       startGame();
+      break;
+    }
+    case 'Submit Answer': {
+      submitAnswer();
       break;
     }
     case 'Next Question': {
       nextQuestion();
       break;
     }
-    // Have another go  
+    // Re-start 
     default: {
       document.getElementById('well-done-area').classList.add('hide');
       document.getElementById('incorrect-answer-area').classList.add('hide');
@@ -207,8 +234,8 @@ function buttonClicked() {
       document.getElementById('button').innerText = 'Start Game';
       document.getElementById('correct').innerText = '0';
       document.getElementById('in-correct').innerText = '0';
-      
-      // Disable prefernces
+
+      // Disable preferences
       document.getElementById('topic-choice').disabled = false;
       document.getElementById('level-choice').disabled = false;
       document.getElementById('num-questions-choice').disabled = false;
