@@ -95,11 +95,18 @@ header {
     padding: 2rem;
     text-align: center;
     font-weight: bold;
+    border-radius: rem;
 }
 
 /* For medium screens */
 
 @media screen and (min-width: 768px) {
+
+    body {
+        margin-top: 5rem ;
+        width: 80%;
+    }
+    
     #score-area, #preferences {
         flex-direction: row;
         justify-content: space-around;
