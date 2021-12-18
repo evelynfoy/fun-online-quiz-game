@@ -110,6 +110,12 @@ header {
 /* For larger screens */
 
 @media screen and (min-width: 992px) {
+    
+    body {
+        margin-top: 5rem ;
+        width: 80%;
+    }
+    
     .area div {
         padding: 2rem;
     }
