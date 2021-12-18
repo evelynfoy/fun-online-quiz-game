@@ -235,7 +235,17 @@ async function getQuestions() {
   questionsArray = [];
 
   // Push each member of modifiedQuestions array to global array  
-  modifiedQuestions.forEach(question => questionsArray.push(question));
+  modifiedQuestions.forEach(question =>  {
+
+    // As corrrect answer is always last move to a random position instead
+    const randomPosition = Math.floor(Math.random() * question.answers.length);
+    question.answers[question.answers.length - 1] = question.answers[randomPosition];
+    question.answers[randomPosition] = question.correctAnswer;
+
+    // Push question to global array
+    questionsArray.push(question);
+    }
+    );
 
   // Set current question to 1
   currentQuestion = 1;
