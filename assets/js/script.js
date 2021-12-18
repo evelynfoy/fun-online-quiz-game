@@ -84,28 +84,30 @@ function showResults() {
 
 function displayNextQuestion() {
 
-  if (currentQuestion < parseInt(document.getElementById('num-questions-choice').value)) {
+  // Get num of questions required
+  const numQuestions = parseInt(document.getElementById('num-questions-choice').value);
+
+  if (currentQuestion < numQuestions) {
+
     // Increase question number 
     currentQuestion += 1;
+
     // Set html to new value
     document.getElementById('question-number').innerHTML = `Q${currentQuestion}`;
 
     // Set question in html to next question in array
     document.getElementById('question').innerHTML = questionsArray[currentQuestion - 1].question;
-
-    // If answer is boolean only one answer is supplied so just print true and false as we know those are the only possible answers anyway
     getAnswers(currentQuestion);
 
-    // Set button text to 'Submit Answer'
-    document.getElementById('button').innerText = "Submit Answer";
-  }
-  // Last question shown
-  else {
+    // Set button text on html page
+    document.getElementById('button').innerText = 'Submit Answer';
+
+  } else {
+    // Last question shown - show results
     showResults();
   }
 }
 
-/* Runs when Next Question button clicked */
 /* Runs when Next Question button clicked */
 function nextQuestion() {
 
@@ -259,4 +261,4 @@ async function getCategories() {
 getCategories();
 
 // Set button click function
-document.getElementById('button').addEventListener('click',buttonClicked);
+document.getElementById('button').addEventListener('click', buttonClicked);
