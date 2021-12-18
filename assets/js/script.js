@@ -211,8 +211,10 @@ async function fetchDataFromAPI(mode) {
   try {
     let result = await fetch(url);
     return await result.json();
-  } catch (error) {
-    console.log(error);
+  } 
+  catch (error) {
+    alert('Unfortunately the questions site is currently unavailable. \nPlease try again later.');
+    document.getElementById('button').disabled = true;
   }
 }
 
