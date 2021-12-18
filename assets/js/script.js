@@ -51,31 +51,22 @@ function startGame() {
 
 }
 
-
 function isCorrect() {
 
   // Get the correct answer for that question
-  let correctAnswer = questionsArray[currentQuestion - 1].correctAnswer;
+  const correctAnswer = questionsArray[currentQuestion - 1].correctAnswer;
 
-  // Get all the radio elements for the question
-  let answers = document.getElementsByName('answer');
+  // Get all the radio element answers for the question
+  const answers = document.getElementsByName('answer');
 
-  // Read through this array looking for the one selected
-  let i = 0;
-  while (!answers[i].checked) {
-    i++;
-  }
-  // Get the answer selected
-  let answerSelected = questionsArray[currentQuestion - 1].answers[i];
+  // Identify the chosen answer from the id of the checked answer e.g. if answer1 was checked 1 is returned 
+  const answerSelectedId = (Array.from(answers).find(answer => answer.checked).id).substring(6);
+  const answerSelectedText = questionsArray[currentQuestion - 1].answers[answerSelectedId]; 
 
   // If same as correct answer then isCorrect returns true else false
-  if (correctAnswer === answerSelected) {
-    return true
-  } else {
-    return false
-  }
-}
+  return (correctAnswer === answerSelectedText) ? true : false;
 
+}
 
 function showResults() {
   // Display the results area and update the final score value
