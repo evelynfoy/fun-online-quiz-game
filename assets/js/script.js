@@ -29,20 +29,14 @@ function getAnswers() {
 
 /* Runs when Start Game button clicked */
 function startGame() {
-  /* Get Preferences */
-
-  /* Get topic chosen from html*/
-  let topicCode = document.getElementById('topic-choice').value;
-
-  /* Get level and number of questions from html also */
-  let level = document.getElementById('level-choice').value;
-  let numQuestions = document.getElementById('num-questions-choice').value;
 
   /* Get questions etc from API */
-  getQuestions(topicCode, level, numQuestions);
+  getQuestions();
 
-  /* Show the start up screen by showing the motivational-area and hiding the questions, answers and score area */
+  // Hide motivational area
   document.getElementById('motivational-area').classList.add('hide');
+
+  //Show the scores, question area and answers 
   document.getElementById('question-area').classList.remove('hide');
   document.getElementById('answers-area').classList.remove('hide');
   document.getElementById('score-area').classList.remove('hide');
@@ -50,13 +44,13 @@ function startGame() {
   // Set button text to 'Submit Answer'
   document.getElementById('button').innerText = "Submit Answer";
 
-  // Enable preferences
+  // Disable preferences
   document.getElementById('topic-choice').disabled = true;
   document.getElementById('level-choice').disabled = true;
   document.getElementById('num-questions-choice').disabled = true;
-  
 
 }
+
 
 function isCorrect() {
 
