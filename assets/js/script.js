@@ -5,50 +5,6 @@
 let questionsArray = [];
 let currentQuestion = 0;
 
-
-/* Fetch questions by calling an API and passing the preferences selected */
-async function fetchDataFromAPI(mode, topicCode, level, numQuestions) {
-  const questionsUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level}`;
-  const categoriesUrl = 'https://opentdb.com/api_category.php';
-
-  let url = (mode === "categories") ? categoriesUrl : questionsUrl ;
-  try {
-    let res = await fetch(url);
-    return await res.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-/* Populate global questions array with questions etc from API */
-async function getQuestions(topicCode, level, numQuestions) {
-
-  let questions = await fetchDataFromAPI("questions", topicCode, level, numQuestions);
-  const modifiedQuestions = questions.results.map(q => {
-    return {
-      question: q.question,
-      correctAnswer: q.correct_answer,
-      answers: [...q.incorrect_answers, q.correct_answer],
-      type: q.type
-    }
-  });
-
-  /* Clear the array first */
-  questionsArray = [];
-
-  for (let i = 0; i < modifiedQuestions.length; i++) {
-    questionsArray.push(modifiedQuestions[i]);
-  }
-
-  // Set current question to 1
-  currentQuestion = 1;
-  
-  /* Populate the first question and answers */
-  document.getElementById('question-number').innerHTML = 'Q1';
-  document.getElementById('question').innerHTML = questionsArray[0].question;
-  getAnswers(1);
-}
-
 function getAnswers() {
   let html = '';
 
@@ -244,15 +200,73 @@ function buttonClicked() {
   }
 }
 
-/* Populate categories from API */
-async function getCategories(topicCode, level, numQuestions) {
+/* Fetch questions by calling an API and passing the mode required */
+async function fetchDataFromAPI(mode) {
 
-  let categories = await fetchDataFromAPI("categories", topicCode, level, numQuestions);
-  
-  let html = '<select name="topic" value="General Knowledge" id="topic-choice" >';
-  categories.trivia_categories.forEach(category => {
-    html+= `<option value="${category.id}">${category.name}</option>`;
+  // Get Preferences from html page
+  const topicCode = document.getElementById('topic-choice').value;
+  const level = document.getElementById('level-choice').value;
+  const numQuestions = document.getElementById('num-questions-choice').value;
+
+  // Define urls
+  const questionsUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level}`;
+  const categoriesUrl = 'https://opentdb.com/api_category.php';
+
+  let url = (mode === "categories") ? categoriesUrl : questionsUrl;
+
+  try {
+    let result = await fetch(url);
+    return await result.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+/* Populate global questions array with questions etc from API */
+async function getQuestions() {
+
+  let questions = await fetchDataFromAPI("questions");
+  const modifiedQuestions = questions.results.map(q => {
+    return {
+      question: q.question,
+      correctAnswer: q.correct_answer,
+      answers: [...q.incorrect_answers, q.correct_answer],
+      type: q.type
+    }
   });
+
+  // Clear the array first 
+  questionsArray = [];
+
+  // Push each member of modifiedQuestions array to global array  
+  modifiedQuestions.forEach(question => questionsArray.push(question));
+
+  // Set current question to 1
+  currentQuestion = 1;
+
+  /* Populate the first question and answers */
+  document.getElementById('question-number').innerHTML = 'Q1';
+  document.getElementById('question').innerHTML = questionsArray[0].question;
+  getAnswers(currentQuestion);
+
+}
+
+/* Populate categories from API */
+async function getCategories() {
+
+  // Get Categories from API
+  let categories = await fetchDataFromAPI("categories");
+
+  // Create the html dynamically for each category
+  let html = '<select name="topic" value="General Knowledge" id="topic-choice" >';
+
+  categories.trivia_categories.forEach(
+    category => {
+      html += `<option value="${category.id}">${category.name}</option>`;
+    }
+  );
+
+  // Update html page
   document.getElementById('topic-choice').innerHTML = html;
 }
 
