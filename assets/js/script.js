@@ -69,10 +69,17 @@ function isCorrect() {
 }
 
 function showResults() {
+
   // Display the results area and update the final score value
-  document.getElementById('well-done-area').classList.remove('hide');
+  const numberIncorrect = document.getElementById('in-correct').innerHTML;
+  const totalNumber = document.getElementById('num-questions-choice').value;
+  const completionMessage = document.getElementById('well-done-message');
+
+  completionMessage.innerHTML = (numberIncorrect > (totalNumber/2)) ? 'Oh dear' : 'Well Done';
+
   document.getElementById('number-correct').innerHTML = document.getElementById('correct').innerHTML;
   document.getElementById('total-number').innerHTML = document.getElementById('num-questions-choice').value;
+  document.getElementById('well-done-area').classList.remove('hide');
 
   // Hide the question and answers area
   document.getElementById('question-area').classList.add('hide');
