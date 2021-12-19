@@ -95,6 +95,10 @@ nav li {
     padding: 6rem;
 }
 
+#motivational-area i {
+    color: var(--red);
+}
+
 #incorrect-answer-area p {
     color: var(--red);
 }
