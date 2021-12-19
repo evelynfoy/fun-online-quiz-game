@@ -58,6 +58,7 @@ header {
     display: flex; 
     flex-direction: column; 
     color: var(--dark-grey);
+    border-radius: 1rem;
 }
 
 .area div, p{
