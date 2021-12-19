@@ -97,7 +97,7 @@ nav li {
 }
 
 #motivational-area p{
-    padding: 6rem;
+    padding: 2rem;
 }
 
 #motivational-area i {
@@ -171,9 +171,8 @@ nav li {
 
     #game-area {
         padding: .5rem;
+        height: 60vh;
     }
-    
-}
 
 /* For medium screens */
 
@@ -184,10 +183,8 @@ nav li {
         width: 80%;
     }
     
-    #score-area, #preferences {
-        flex-direction: row;
-        justify-content: space-around;
-        
+    #motivational-area p {
+        padding: 6rem;
     }
 }
 
@@ -204,4 +201,9 @@ nav li {
         padding: 2rem;
     }
     
+    #score-area, #preferences {
+        flex-direction: row;
+        justify-content: space-around;
+        
+    }
 }
