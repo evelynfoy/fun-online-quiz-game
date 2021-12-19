@@ -17,6 +17,10 @@
 let questionsArray = [];
 let currentQuestion = 0;
 
+// Define references to html document elements
+const button = document.querySelector('#button');
+const answersArea = document.querySelector('#answers-area');
+
 function getAnswers() {
   let html = '';
 
@@ -36,7 +40,7 @@ function getAnswers() {
       }
     }
   }
-  document.querySelector('#answers-area').innerHTML = html;
+  answersArea.innerHTML = html;
 }
 
 /* Runs when Start Game button clicked */
@@ -50,11 +54,11 @@ function startGame() {
 
   //Show the scores, question area and answers 
   document.querySelector('#question-area').classList.remove('hide');
-  document.querySelector('#answers-area').classList.remove('hide');
+  answersArea.classList.remove('hide');
   document.querySelector('#score-area').classList.remove('hide');
 
   // Set button text to 'Submit Answer'
-  document.querySelector('#button').innerText = "Submit Answer";
+  button.innerText = "Submit Answer";
 
   // Disable preferences
   document.querySelector('#topic-choice').disabled = true;
@@ -95,10 +99,10 @@ function showResults() {
 
   // Hide the question and answers area
   document.querySelector('#question-area').classList.add('hide');
-  document.querySelector('#answers-area').classList.add('hide');
+  answersArea.classList.add('hide');
 
   // Change the text on the button to have another go
-  document.querySelector('#button').innerText = 'Have another go!';
+  button.innerText = 'Have another go!';
 }
 
 function displayNextQuestion() {
@@ -119,7 +123,7 @@ function displayNextQuestion() {
     getAnswers(currentQuestion);
 
     // Set button text on html page
-    document.querySelector('#button').innerText = 'Submit Answer';
+    button.innerText = 'Submit Answer';
 
   } else {
     // Last question shown - show results
@@ -132,7 +136,7 @@ function nextQuestion() {
 
   // Hide incorrect answer area and show answers area
   document.querySelector('#incorrect-answer-area').classList.add('hide');
-  document.querySelector('#answers-area').classList.remove('hide');
+  answersArea.classList.remove('hide');
 
   // display next question
   displayNextQuestion();
@@ -151,7 +155,7 @@ function submitAnswer() {
     displayNextQuestion();
 
     // Set button text on html page
-    //document.querySelector('#button').innerText = 'Submit Answer';
+    //button.innerText = 'Submit Answer';
 
   } else {
 
@@ -164,16 +168,16 @@ function submitAnswer() {
 
     // Show incorrect answer area and hide answers
     document.querySelector('#incorrect-answer-area').classList.remove('hide');
-    document.querySelector('#answers-area').classList.add('hide');
+    answersArea.classList.add('hide');
 
     // Set button text on html page
-    document.querySelector('#button').innerText = 'Next Question';
+    button.innerText = 'Next Question';
   }
 }
 
 function buttonClicked() {
   //Get current button text to decide action
-  const buttonText = document.querySelector('#button').innerText;
+  const buttonText = button.innerText;
 
   switch (buttonText) {
     case 'Start Game': {
@@ -194,7 +198,7 @@ function buttonClicked() {
       document.querySelector('#incorrect-answer-area').classList.add('hide');
       document.querySelector('#motivational-area').classList.remove('hide');
       document.querySelector('#score-area').classList.add('hide');
-      document.querySelector('#button').innerText = 'Start Game';
+      button.innerText = 'Start Game';
       document.querySelector('#correct').innerText = '0';
       document.querySelector('#in-correct').innerText = '0';
 
@@ -227,7 +231,7 @@ async function fetchDataFromAPI(mode) {
   } 
   catch (error) {
     alert('Unfortunately the questions site is currently unavailable. \nPlease try again later.');
-    document.querySelector('#button').disabled = true;
+    button.disabled = true;
   }
 }
 
@@ -293,4 +297,4 @@ async function getCategories() {
 getCategories();
 
 // Set button click function
-document.querySelector('#button').addEventListener('click', buttonClicked);
+button.addEventListener('click', buttonClicked);
