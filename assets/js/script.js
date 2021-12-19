@@ -36,7 +36,7 @@ function getAnswers() {
       }
     }
   }
-  document.getElementById("answers-area").innerHTML = html;
+  document.querySelector('#answers-area').innerHTML = html;
 }
 
 /* Runs when Start Game button clicked */
@@ -46,20 +46,20 @@ function startGame() {
   getQuestions();
 
   // Hide motivational area
-  document.getElementById('motivational-area').classList.add('hide');
+  document.querySelector('#motivational-area').classList.add('hide');
 
   //Show the scores, question area and answers 
-  document.getElementById('question-area').classList.remove('hide');
-  document.getElementById('answers-area').classList.remove('hide');
-  document.getElementById('score-area').classList.remove('hide');
+  document.querySelector('#question-area').classList.remove('hide');
+  document.querySelector('#answers-area').classList.remove('hide');
+  document.querySelector('#score-area').classList.remove('hide');
 
   // Set button text to 'Submit Answer'
-  document.getElementById('button').innerText = "Submit Answer";
+  document.querySelector('#button').innerText = "Submit Answer";
 
   // Disable preferences
-  document.getElementById('topic-choice').disabled = true;
-  document.getElementById('level-choice').disabled = true;
-  document.getElementById('num-questions-choice').disabled = true;
+  document.querySelector('#topic-choice').disabled = true;
+  document.querySelector('#level-choice').disabled = true;
+  document.querySelector('#num-questions-choice').disabled = true;
 
 }
 
@@ -83,28 +83,28 @@ function isCorrect() {
 function showResults() {
 
   // Display the results area and update the final score value
-  const numberIncorrect = document.getElementById('in-correct').innerHTML;
-  const totalNumber = document.getElementById('num-questions-choice').value;
-  const completionMessage = document.getElementById('well-done-message');
+  const numberIncorrect = document.querySelector('#in-correct').innerHTML;
+  const totalNumber = document.querySelector('#num-questions-choice').value;
+  const completionMessage = document.querySelector('#well-done-message');
 
   completionMessage.innerHTML = (numberIncorrect > (totalNumber/2)) ? 'Oh dear' : 'Well Done';
 
-  document.getElementById('number-correct').innerHTML = document.getElementById('correct').innerHTML;
-  document.getElementById('total-number').innerHTML = document.getElementById('num-questions-choice').value;
-  document.getElementById('well-done-area').classList.remove('hide');
+  document.querySelector('#number-correct').innerHTML = document.querySelector('#correct').innerHTML;
+  document.querySelector('#total-number').innerHTML = document.querySelector('#num-questions-choice').value;
+  document.querySelector('#well-done-area').classList.remove('hide');
 
   // Hide the question and answers area
-  document.getElementById('question-area').classList.add('hide');
-  document.getElementById('answers-area').classList.add('hide');
+  document.querySelector('#question-area').classList.add('hide');
+  document.querySelector('#answers-area').classList.add('hide');
 
   // Change the text on the button to have another go
-  document.getElementById('button').innerText = 'Have another go!';
+  document.querySelector('#button').innerText = 'Have another go!';
 }
 
 function displayNextQuestion() {
 
   // Get num of questions required
-  const numQuestions = parseInt(document.getElementById('num-questions-choice').value);
+  const numQuestions = parseInt(document.querySelector('#num-questions-choice').value);
 
   if (currentQuestion < numQuestions) {
 
@@ -112,14 +112,14 @@ function displayNextQuestion() {
     currentQuestion += 1;
 
     // Set html to new value
-    document.getElementById('question-number').innerHTML = `Q${currentQuestion}`;
+    document.querySelector('#question-number').innerHTML = `Q${currentQuestion}`;
 
     // Set question in html to next question in array
-    document.getElementById('question').innerHTML = questionsArray[currentQuestion - 1].question;
+    document.querySelector('#question').innerHTML = questionsArray[currentQuestion - 1].question;
     getAnswers(currentQuestion);
 
     // Set button text on html page
-    document.getElementById('button').innerText = 'Submit Answer';
+    document.querySelector('#button').innerText = 'Submit Answer';
 
   } else {
     // Last question shown - show results
@@ -131,8 +131,8 @@ function displayNextQuestion() {
 function nextQuestion() {
 
   // Hide incorrect answer area and show answers area
-  document.getElementById('incorrect-answer-area').classList.add('hide');
-  document.getElementById('answers-area').classList.remove('hide');
+  document.querySelector('#incorrect-answer-area').classList.add('hide');
+  document.querySelector('#answers-area').classList.remove('hide');
 
   // display next question
   displayNextQuestion();
@@ -146,34 +146,34 @@ function submitAnswer() {
   if (isCorrect()) {
 
     //Increase Correct score
-    const correctScore = document.getElementById('correct');
+    const correctScore = document.querySelector('#correct');
     correctScore.innerHTML = parseInt(correctScore.innerHTML) + 1;
     displayNextQuestion();
 
     // Set button text on html page
-    //document.getElementById('button').innerText = 'Submit Answer';
+    //document.querySelector('#button').innerText = 'Submit Answer';
 
   } else {
 
     //Increase incorrect score
-    const incorrectScore = document.getElementById('in-correct');
+    const incorrectScore = document.querySelector('#in-correct');
     incorrectScore.innerHTML = parseInt(incorrectScore.innerHTML) + 1;
 
     // Set correct answer on html page
-    document.getElementById('correct-answer').innerText = questionsArray[currentQuestion - 1].correctAnswer;;
+    document.querySelector('#correct-answer').innerText = questionsArray[currentQuestion - 1].correctAnswer;;
 
     // Show incorrect answer area and hide answers
-    document.getElementById('incorrect-answer-area').classList.remove('hide');
-    document.getElementById('answers-area').classList.add('hide');
+    document.querySelector('#incorrect-answer-area').classList.remove('hide');
+    document.querySelector('#answers-area').classList.add('hide');
 
     // Set button text on html page
-    document.getElementById('button').innerText = 'Next Question';
+    document.querySelector('#button').innerText = 'Next Question';
   }
 }
 
 function buttonClicked() {
   //Get current button text to decide action
-  const buttonText = document.getElementById('button').innerText;
+  const buttonText = document.querySelector('#button').innerText;
 
   switch (buttonText) {
     case 'Start Game': {
@@ -190,18 +190,18 @@ function buttonClicked() {
     }
     // Re-start 
     default: {
-      document.getElementById('well-done-area').classList.add('hide');
-      document.getElementById('incorrect-answer-area').classList.add('hide');
-      document.getElementById('motivational-area').classList.remove('hide');
-      document.getElementById('score-area').classList.add('hide');
-      document.getElementById('button').innerText = 'Start Game';
-      document.getElementById('correct').innerText = '0';
-      document.getElementById('in-correct').innerText = '0';
+      document.querySelector('#well-done-area').classList.add('hide');
+      document.querySelector('#incorrect-answer-area').classList.add('hide');
+      document.querySelector('#motivational-area').classList.remove('hide');
+      document.querySelector('#score-area').classList.add('hide');
+      document.querySelector('#button').innerText = 'Start Game';
+      document.querySelector('#correct').innerText = '0';
+      document.querySelector('#in-correct').innerText = '0';
 
       // Disable preferences
-      document.getElementById('topic-choice').disabled = false;
-      document.getElementById('level-choice').disabled = false;
-      document.getElementById('num-questions-choice').disabled = false;
+      document.querySelector('#topic-choice').disabled = false;
+      document.querySelector('#level-choice').disabled = false;
+      document.querySelector('#num-questions-choice').disabled = false;
       break;
     }
   }
@@ -211,9 +211,9 @@ function buttonClicked() {
 async function fetchDataFromAPI(mode) {
 
   // Get Preferences from html page
-  const topicCode = document.getElementById('topic-choice').value;
-  const level = document.getElementById('level-choice').value;
-  const numQuestions = document.getElementById('num-questions-choice').value;
+  const topicCode = document.querySelector('#topic-choice').value;
+  const level = document.querySelector('#level-choice').value;
+  const numQuestions = document.querySelector('#num-questions-choice').value;
 
   // Define urls
   const questionsUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level}`;
@@ -227,7 +227,7 @@ async function fetchDataFromAPI(mode) {
   } 
   catch (error) {
     alert('Unfortunately the questions site is currently unavailable. \nPlease try again later.');
-    document.getElementById('button').disabled = true;
+    document.querySelector('#button').disabled = true;
   }
 }
 
@@ -264,8 +264,8 @@ async function getQuestions() {
   currentQuestion = 1;
 
   /* Populate the first question and answers */
-  document.getElementById('question-number').innerHTML = 'Q1';
-  document.getElementById('question').innerHTML = questionsArray[0].question;
+  document.querySelector('#question-number').innerHTML = 'Q1';
+  document.querySelector('#question').innerHTML = questionsArray[0].question;
   getAnswers(currentQuestion);
 
 }
@@ -286,11 +286,11 @@ async function getCategories() {
   );
 
   // Update html page
-  document.getElementById('topic-choice').innerHTML = html;
+  document.querySelector('#topic-choice').innerHTML = html;
 }
 
 // Load categories from API as topics
 getCategories();
 
 // Set button click function
-document.getElementById('button').addEventListener('click', buttonClicked);
+document.querySelector('#button').addEventListener('click', buttonClicked);
