@@ -211,6 +211,25 @@ function buttonClicked() {
   }
 }
 
+function restart() {
+  
+  document.querySelector('#well-done-area').classList.add('hide');
+  document.querySelector('#incorrect-answer-area').classList.add('hide');
+  document.querySelector('#motivational-area').classList.remove('hide');
+  document.querySelector('#score-area').classList.add('hide');
+  document.querySelector('#answers-area').classList.add('hide');
+  document.querySelector('#question-area').classList.add('hide');
+
+  button.innerText = 'Start Game';
+  document.querySelector('#correct').innerText = '0';
+  document.querySelector('#in-correct').innerText = '0';
+
+  // Enable preferences
+  document.querySelector('#topic-choice').disabled = false;
+  document.querySelector('#level-choice').disabled = false;
+  document.querySelector('#num-questions-choice').disabled = false;
+}
+
 /* Fetch questions by calling an API and passing the mode required */
 async function fetchDataFromAPI(mode) {
 
@@ -298,3 +317,4 @@ getCategories();
 
 // Set button click function
 button.addEventListener('click', buttonClicked);
+document.querySelector("#restart").addEventListener('click', restart);
