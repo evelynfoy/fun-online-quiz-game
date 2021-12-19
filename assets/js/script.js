@@ -1,4 +1,16 @@
-
+/**
+ * The following program contains source code for a Fun Online Quiz Game.
+ * It allows the player to select the level, topic or category and the number of questions they would like.
+ * The categories available to the player are retrieved from an API called https://opentdb.com .
+ * When the selections are made then the player clicks on the 'Start' button and the program retrieves the requested number of questions from the API.
+ * The first question is displayed along with potential answers in a radio button format.
+ * When the player clicks the 'Submit Answer' button then the chosen answer is checked against the actual correct answer and their score tracked.
+ * If an incorrect answer is chosen then the correct answer is displayed and the button text changes to 'Next Question'.
+ * If the correct answer is chosen then the next question is displayed.
+ * Once all the questions have been answered the results will be displayed together with either a 'Well Done' message if they scored more than half correct 
+ * or an 'Oh dear' message if they scored less than half.
+ * At this point the button text changes to 'Have another go!' and if this is clicked the game resets and allows the player to change the parameters and start again.
+ */
 "use strict"
 
 /* Declare Global Variables */
@@ -181,6 +193,7 @@ function buttonClicked() {
       document.getElementById('well-done-area').classList.add('hide');
       document.getElementById('incorrect-answer-area').classList.add('hide');
       document.getElementById('motivational-area').classList.remove('hide');
+      document.getElementById('score-area').classList.add('hide');
       document.getElementById('button').innerText = 'Start Game';
       document.getElementById('correct').innerText = '0';
       document.getElementById('in-correct').innerText = '0';
