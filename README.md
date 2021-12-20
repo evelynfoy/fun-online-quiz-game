@@ -2,11 +2,12 @@
 
 This project is to build a fun Online Quiz game.
 It should provide entertainment for it's audience. It targets all ages who like quizes.
-This is a fully responsive quiz game that supplies as many questions as user decides. It allows them to pick a level and a topic . It has a score tracking system that keeps track of the score as they go throuugh the questions and provides feedback after each question.
-They can restart the gane at any time if they choose to change the topic or level.
+This is a fully responsive quiz game that supplies as many questions as the user decides. It allows them to pick a level and a topic. 
+It has a score tracking system that keeps track of the score as they go throuugh the questions and provides feedback after each question.
+They can restart the game at any time if they choose to change the topic or level.
+The game uses an API to get the requested number of questions and the categories available to be selected. https://opentdb.com
 
-
-![Responsive Displays](docs/images/FOQG_mockup.png)
+![Responsive Displays](docs/images/FOQG_Mockup.png)
 
 # Wireframes
 I have used [Balsamic](https://balsamiq.com/wireframes/ "Balsamic") to develop some wireframes for my website. 
@@ -21,20 +22,26 @@ The wireframes are below:
 ## Features 
 
 The site consists of a single page with a large heading, a preference area,  a score area, a question area and an answer & feedback area. 
-It also has a button control to move to the next question. 
+It also has a button control to move to the next question. It also has a restart option.
 
 
 ### Existing Features
 
 - __The Fun Quiz Heading__
 
-  - Featured at the top of the page, the Fun Online Quiz Game heading is easy to see for the user and advertises immediately what the site is about. It also gives the page a 'fun' feel.
+  - Featured at the top of the page, the Fun Online Quiz Game heading is easy to see for the user and advertises immediately what the site is about. 
+  - It also gives the page a 'fun' feel.
 
-![Heading](docs/images/Heading.png)
+- __The Nav bar__
+  - The Nav bar is an unordered list containing a single item. Restart.
+  - Here it is clearly visible and always available to the player but it is also out of the way of the main button and doesn't interfere with the game.
+  - It takes the player back to the Start page where the preferences are enabled and the player can re-pick.
+
+![Nav](docs/images/Heading.png)
 
 - __The Prefences Area__
 
-  - This section will allow the user select the topic, level and no of questions.These can be changed at any time and the game re-started. 
+  - This section will allow the user select the topic, level and no of questions.These are disabled once the game is started. 
   - The options stack on top of each other on small screens like phones.
 
 ![Preferences](docs/images/Preferences-Phone.png)
@@ -86,14 +93,16 @@ It also has a button control to move to the next question.
 
 - __The Well Done section__
 
-  - The well done section appears at the end and displays the score and a congratulatory message..
+  - The well done section appears at the end and displays the score and a message.
+  - If the player gets more than half the questions correct then the message says 'Well Done'. Otherwise it says 'Oh dear'.
 
 ![Well Done Area](docs/images/WellDoneArea.png)
 
 - __The Button section__
 
-  - The button in this section allows users to start the game, proceed to the next question or re-start the game.
+  - The button in this section allows users to start the game, submit an answer or proceed to the next question. At the end they can choose to play another game.
   - The appropriate prompt will appear on the button as they progress.
+  - If they get a question wrong then the button will display the text 'Next Queston'. If they get it right it will show 'Submit Answer'.
 
 ![Button Area Start](docs/images/ButtonAreaStart.png) 
 ![Button Area Next Question](docs/images/ButtonAreaNextQuestion.png)
@@ -104,15 +113,13 @@ It also has a button control to move to the next question.
 
 - Add another game like matching images.
 
+## Technologies Used 
+
+- HTML, CSS and Javacript
+
 ## Testing 
 
-In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your project’s features and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
 
-In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
-
-You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
-
-If this section grows too long, you may want to split it off into a separate file and link to it from here.
 
 
 ### Validator Testing 
@@ -135,14 +142,16 @@ You will need to mention unfixed bugs and why they were not fixed. This section 
 
 ## Deployment
 
-This section should describe the process you went through to deploy the project to a hosting platform (e.g. GitHub) 
+I created a repository in github for this project https://github.com/evelynfoy/fun-online-quiz-game
+I then used the gitpod editor to build it.
 
 - The site was deployed to GitHub pages. The steps to deploy are as follows: 
   - In the GitHub repository, navigate to the Settings tab 
+  - Then click the Pages tab.
   - From the source section drop-down menu, select the Master Branch
-  - Once the master branch has been selected, the page will be automatically refreshed with a detailed ribbon display to indicate the successful deployment. 
+  - Once the master branch has been selected, the page will be automatically refresh with a link to the deployed site. 
 
-The live link can be found here - https://code-institute-org.github.io/love-maths/
+The live link can be found here - https://evelynfoy.github.io/fun-online-quiz-game/
 
 
 ## Credits 
@@ -158,6 +167,8 @@ For code inspiration, help and advice,
 For content and style inspiration,
 
 * [Free Astronomy Quiz](https://www.free-astronomy-quiz.com/index.html)
+* [Open Trivia Database](https://opentdb.com)
+* [Font Awesome](https://fontawesome.com/)
 
 
 
