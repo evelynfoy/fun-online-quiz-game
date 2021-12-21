@@ -48,11 +48,10 @@ nav {
     text-align: left;
     padding-top: 1rem;
     margin-top: .5rem;
-    background-color: var(--white);
-    color: var(--red);
+    /* background-color: var(--red); */
+    /* color: var(--red); */
     padding: 0;
     font-weight: bold;
-    width: 8rem;
     border-radius: .5rem;
     margin-bottom: 5px;
 }
@@ -60,7 +59,20 @@ nav {
 nav li {
     list-style-type: none;
     padding: 2px;
+    display: flex; 
+    justify-content:flex-end;
+    
+}
 
+nav li a {
+    color: var(--white);
+    font-weight: normal;
+    text-decoration: none;
+    padding: .25rem;
+}
+
+nav li a:hover {
+    font-size: 1.75rem;
 }
 
 #game-area {
@@ -130,7 +142,6 @@ nav li {
     width: 90%;
     margin: 1rem auto;
     display: flex;
-    justify-content: center;
 }
 
 #restart-button {
@@ -141,6 +152,10 @@ nav li {
     text-align: center;
     font-weight: bold;
     border-radius: 5rem;
+}
+
+#restart-text {
+    padding-left: .25rem;;
 }
 
 select {
