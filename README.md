@@ -119,7 +119,53 @@ It also has a button control to move to the next question. It also has a restart
 
 ## Testing 
 
+To test this site I did the following:-
+First I tested the site on a mobile device and then on a tablet and laptop.
+1) Clicked the site url in github - https://evelynfoy.github.io/fun-online-quiz-game/
+   The site appeared quickly and looked well.
+   The Favicon icon appeared correctly beside the title of the page.
+   The restart button appeared on the left hand side was obvious but not intrusive. The text enlarged as I hovered over it.
+   The topic dropdown was correctly populated with many categories from the API.
+   The level was correctly populated with Easy, Medium and Hard.
+   The number of questions was defaulted to 10 and appeared as a number that could be increassed or decreased using arrows or typed over.
+   The preferences were stacked one over the other correctly and the length of the topic dropdown was limited in size to facilitate a smaller screen.
+2) I clicked the Start Game button
+   The Score area appeared correctly set to 0.
+   The first question appeared with four answers the first of which was pre-selected.
+   The button text read 'Submit Answer' 
+   The preferences were now disabled but the restart button was clearly available
+3) I clcked the button and the incorrect message appeared replacing the answers that had been displayed.
+   It was smooth and looked well. The text stood out well in red against the light grey background.
+   The button now said 'Next Question' and the incorrect answers had been correctly changed to 1.
+4) I clicked the button again
+   Another questions appeared as expected. 
+5) I chose the correct answer this time and the next question appeared.
+   The Correct Answer score increased.
+6) I continued to click forward for a few more questions and it worked consistently.
+7) At question 7 I clciked the restart button
+   The landing page was re-displayed inviting me to start a game.
+   The preferences were re-enabled but retained the previous choices.
+8) Is chnaged the number of questions to 3 and re-started.
+   The first question appeared.
+   I clicked through the three questions which performed as expected.
+9) After I completed the three questions the results appeared.
+   Oh dear, I only got 1 out of 3 right. But never mind, I am invited to 'Have another go'.
+10) I click the button again and I am back at the landing page.
+11) I run it again this time getting more than half right and again the results appeared.
+    Well Done - I am congratulated and my score appears correctly.
+    Again I am invited to 'Have another go'.
 
+I continue to play, chosing different topics, levels and questions amounts.
+It is fun, engaging and a pleasant user experiance
+
+I notice it changes to adapt to different screen sizes, displaying the aresa in single column format on a small screen and  two and three colums as the 
+screen size gets bigger. Also I notice the padding and width size adjust comfortably for each screen size.
+
+I am satisfied with the results
+
+I then tested the error processing but changing the name of the url for the API to be incorrect.
+It displayed an alert informing me that the questions site was currently unavailable and that I should try again later.
+The button was disabled correctly preventing confusion.
 
 
 ### Validator Testing 
@@ -136,9 +182,6 @@ It also has a button control to move to the next question. It also has a restart
       - Largest function has 10 statements in it, while the median is 3.
       - The most complex function has a cyclomatic complexity value of 4 while the median is 2.
 
-### Unfixed Bugs
-
-You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed. 
 
 ## Deployment
 
