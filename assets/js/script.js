@@ -11,7 +11,9 @@
  * or an 'Oh dear' message if they scored less than half.
  * At this point the button text changes to 'Have another go!' and if this is clicked the game resets and allows the player to change the parameters and start again.
  */
-"use strict"
+"use strict";
+/*jshint strict: global */
+/*jshint esversion: 8 */
 
 /* Declare Global Variables */
 let questionsArray = [];
@@ -29,7 +31,7 @@ const numQuestionsChoiceRef =  document.querySelector('#num-questions-choice');
 const incorrectRef = document.querySelector('#incorrect');
 const numberCorrectRef = document.querySelector('#number-correct');
 const wellDoneAreaRef = document.querySelector('#well-done-area');
-const totalNumberRef = document.querySelector('#total-number')
+const totalNumberRef = document.querySelector('#total-number');
 const questionNumberRef = document.querySelector('#question-number');
 const questionRef =  document.querySelector('#question');
 const incorrectAnswerAreaRef = document.querySelector('#incorrect-answer-area');
@@ -171,7 +173,7 @@ function submitAnswer() {
     incorrectRef.innerHTML = parseInt(incorrectRef.innerHTML) + 1;
 
     // Set correct answer on html page
-    correctAnswerRef.innerText = questionsArray[currentQuestion - 1].correctAnswer;;
+    correctAnswerRef.innerText = questionsArray[currentQuestion - 1].correctAnswer;
 
     // Show incorrect answer area and hide answers
     incorrectAnswerAreaRef.classList.remove('hide');
@@ -271,7 +273,7 @@ async function getQuestions() {
       correctAnswer: q.correct_answer,
       answers: [...q.incorrect_answers, q.correct_answer],
       type: q.type
-    }
+    };
   });
 
   // Clear the array first 
