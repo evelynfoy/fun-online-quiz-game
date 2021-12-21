@@ -247,10 +247,10 @@ async function fetchDataFromAPI(mode) {
   const questionsUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level}`;
   const categoriesUrl = 'https://opentdb.com/api_category.php';
 
-  let url = (mode === "categories") ? categoriesUrl : questionsUrl;
+  const url = (mode === "categories") ? categoriesUrl : questionsUrl;
 
   try {
-    let result = await fetch(url);
+    const result = await fetch(url);
     return await result.json();
   } 
   catch (error) {
@@ -262,7 +262,7 @@ async function fetchDataFromAPI(mode) {
 /* Populate global questions array with questions etc from API */
 async function getQuestions() {
 
-  let questions = await fetchDataFromAPI("questions");
+  const questions = await fetchDataFromAPI("questions");
   const modifiedQuestions = questions.results.map(q => {
     return {
       question: q.question,
@@ -302,7 +302,7 @@ async function getQuestions() {
 async function getCategories() {
 
   // Get Categories from API
-  let categories = await fetchDataFromAPI("categories");
+  const categories = await fetchDataFromAPI("categories");
 
   // Create the html dynamically for each category
   let html = '<select name="topic" value="General Knowledge" id="topic-choice" >';
