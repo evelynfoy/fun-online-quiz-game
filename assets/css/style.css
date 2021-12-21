@@ -6,6 +6,7 @@
     --red:#cc0000;
     --light-grey:#E6ECF0;
     --dark-grey:#24211E;
+    --white: #FFF;
    
 }
 
@@ -23,7 +24,7 @@ html {
 }
 
 body {
-    background-color: white;
+    background-color: var(--white);
     font-family: "Roboto", sans-serif;
     margin: 0 auto;
     font-size: 1.5rem;
@@ -38,7 +39,7 @@ main {
 
 header {
     text-align: center;
-    color: white;
+    color: var(--white);
     font-size: 1.5rem;
     padding-top: 1rem;
 }
@@ -47,7 +48,7 @@ nav {
     text-align: left;
     padding-top: 1rem;
     margin-top: .5rem;
-    background-color: white;
+    background-color: var(--white);
     color: var(--red);
     padding: 0;
     font-weight: bold;
@@ -63,10 +64,8 @@ nav li {
 }
 
 #game-area {
-    background-color: white;
+    background-color: var(--white);
     padding: 1rem;
-    /* height: 80vh;
-    position: relative; */
 }
 
 .area {
@@ -114,14 +113,12 @@ nav li {
     margin: 1rem auto;
     display: flex;
     justify-content: center;
-    /* position: absolute; */
-    /* bottom: 1rem; */
 }
 
 #button {
     font-size: 2rem;
     background-color: var(--red);
-    color: white;
+    color: var(--white);
     padding: 2rem;
     text-align: center;
     font-weight: bold;
@@ -139,12 +136,11 @@ nav li {
 #restart-button {
     font-size: 2rem;
     background-color: var(--red);
-    color: white;
+    color: var(--white);
     padding: 2rem;
     text-align: center;
     font-weight: bold;
     border-radius: 5rem;
-
 }
 
 select {
