@@ -208,6 +208,12 @@ I then used the gitpod editor to build it.
 
 The live link can be found here - https://evelynfoy.github.io/fun-online-quiz-game/
 
+For local deployment 
+  - Go to https://github.com/evelynfoy/fun-online-quiz-game
+  - Click Code button
+  - You can then choose to Open with GitHub Desktop, Open with Visual Stuio or Download the source as a zip file.
+  - If you download the zip file, you can extract the contents to a folder of your choice and open the source using any editor e.g Visual Studio Code 
+
 
 ## Credits 
 
