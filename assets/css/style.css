@@ -48,8 +48,6 @@ nav {
     text-align: left;
     padding-top: 1rem;
     margin-top: .5rem;
-    /* background-color: var(--red); */
-    /* color: var(--red); */
     padding: 0;
     font-weight: bold;
     border-radius: .5rem;
@@ -156,6 +154,10 @@ nav li a:hover {
 
 #restart-text {
     padding-left: .25rem;;
+}
+
+div i {
+    padding-left: 1rem;;
 }
 
 select {
