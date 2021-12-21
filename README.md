@@ -22,7 +22,7 @@ The wireframes are below:
 ## Features 
 
 The site consists of a single page with a large heading, a preference area,  a score area, a question area and an answer & feedback area. 
-It also has a button control to move to the next question. It also has a restart option.
+It has a button control to move to the next question and a restart option.
 
 
 ### Existing Features
@@ -113,9 +113,21 @@ It also has a button control to move to the next question. It also has a restart
 
 - Add another game like matching images.
 
-## Technologies Used 
+# Technologies used
 
-- HTML, CSS and Javacript
+## Languages
+* HTML
+* CSS
+* Javascript
+
+## Libraries & Framework
+* [Google Fonts](https://fonts.google.com/ "Google Fonts")
+* [Font Awesome library](https://fontawesome.com/ "Font Awesome")
+
+## Tools
+* [Balsamic](https://balsamiq.com/wireframes/ "Balsamic")
+* [Open Trivia Database](https://opentdb.com/ "Open Trivia Database")
+
 
 ## Testing 
 
@@ -172,17 +184,17 @@ The button was disabled correctly preventing confusion.
 
 - HTML
     - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fevelynfoy.github.io%2Ffun-online-quiz-game%2F)
+    - See [Results](docs/images/htmlValidatorResult.png)
 - CSS
     - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fevelynfoy.github.io%2Ffun-online-quiz-game%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+    - See [Results](docs/images/cssValidation.png)
 - JavaScript
     - No errors were found when passing through the official [Jshint validator](https://jshint.com/)
-      - The following metrics were returned: 
-      - There are 11 functions in this file.
-      - Function with the largest signature takes 2 arguments, while the median is 0.
-      - Largest function has 10 statements in it, while the median is 3.
-      - The most complex function has a cyclomatic complexity value of 4 while the median is 2.
-
-
+    - See [Results](docs/images/jsHintResults.png)
+- Lighthouse Report
+    - Accessibility score 97
+    - See [Results](docs/images/LightHouseResults.png)
+     
 ## Deployment
 
 I created a repository in github for this project https://github.com/evelynfoy/fun-online-quiz-game
