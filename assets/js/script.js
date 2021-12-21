@@ -18,8 +18,25 @@ let questionsArray = [];
 let currentQuestion = 0;
 
 // Define references to html document elements
-const button = document.querySelector('#button');
-const answersArea = document.querySelector('#answers-area');
+const buttonRef = document.querySelector('#button');
+const answersAreaRef = document.querySelector('#answers-area');
+const motivationalAreaRef = document.querySelector('#motivational-area');
+const questionAreaRef = document.querySelector('#question-area');
+const scoreAreaRef = document.querySelector('#score-area');
+const topicChoiceRef = document.querySelector('#topic-choice');
+const levelChoiceRef = document.querySelector('#level-choice');
+const numQuestionsChoiceRef =  document.querySelector('#num-questions-choice');
+const incorrectRef = document.querySelector('#incorrect');
+const numberCorrectRef = document.querySelector('#number-correct');
+const wellDoneAreaRef = document.querySelector('#well-done-area');
+const totalNumberRef = document.querySelector('#total-number')
+const questionNumberRef = document.querySelector('#question-number');
+const questionRef =  document.querySelector('#question');
+const incorrectAnswerAreaRef = document.querySelector('#incorrect-answer-area');
+const correctAnswerRef = document.querySelector('#correct-answer');
+const correctRef = document.querySelector('#correct');
+const restartRef = document.querySelector('#restart');
+const completionMessageRef = document.querySelector('#well-done-message');
 
 function getAnswers() {
   let html = '';
@@ -40,7 +57,7 @@ function getAnswers() {
       }
     }
   }
-  answersArea.innerHTML = html;
+  answersAreaRef.innerHTML = html;
 }
 
 /* Runs when Start Game button clicked */
@@ -50,20 +67,20 @@ function startGame() {
   getQuestions();
 
   // Hide motivational area
-  document.querySelector('#motivational-area').classList.add('hide');
+  motivationalAreaRef.classList.add('hide');
 
   //Show the scores, question area and answers 
-  document.querySelector('#question-area').classList.remove('hide');
-  answersArea.classList.remove('hide');
-  document.querySelector('#score-area').classList.remove('hide');
+  questionAreaRef.classList.remove('hide');
+  answersAreaRef.classList.remove('hide');
+  scoreAreaRef.classList.remove('hide');
 
   // Set button text to 'Submit Answer'
-  button.innerText = "Submit Answer";
+  buttonRef.innerText = "Submit Answer";
 
   // Disable preferences
-  document.querySelector('#topic-choice').disabled = true;
-  document.querySelector('#level-choice').disabled = true;
-  document.querySelector('#num-questions-choice').disabled = true;
+  topicChoiceRef.disabled = true;
+  levelChoiceRef.disabled = true;
+  numQuestionsChoiceRef.disabled = true;
 
 }
 
@@ -86,29 +103,24 @@ function isCorrect() {
 
 function showResults() {
 
-  // Display the results area and update the final score value
-  const numberIncorrect = document.querySelector('#in-correct').innerHTML;
-  const totalNumber = document.querySelector('#num-questions-choice').value;
-  const completionMessage = document.querySelector('#well-done-message');
+  completionMessageRef.innerHTML = (incorrectRef.innerHTML > (numQuestionsChoiceRef.value/2)) ? 'Oh dear' : 'Well Done';
 
-  completionMessage.innerHTML = (numberIncorrect > (totalNumber/2)) ? 'Oh dear' : 'Well Done';
-
-  document.querySelector('#number-correct').innerHTML = document.querySelector('#correct').innerHTML;
-  document.querySelector('#total-number').innerHTML = document.querySelector('#num-questions-choice').value;
-  document.querySelector('#well-done-area').classList.remove('hide');
+  numberCorrectRef.innerHTML = correctRef.innerHTML;
+  totalNumberRef.innerHTML = numQuestionsChoiceRef.value;
+  wellDoneAreaRef.classList.remove('hide');
 
   // Hide the question and answers area
-  document.querySelector('#question-area').classList.add('hide');
-  answersArea.classList.add('hide');
+  questionAreaRef.classList.add('hide');
+  answersAreaRef.classList.add('hide');
 
   // Change the text on the button to have another go
-  button.innerText = 'Have another go!';
+  buttonRef.innerText = 'Have another go!';
 }
 
 function displayNextQuestion() {
 
   // Get num of questions required
-  const numQuestions = parseInt(document.querySelector('#num-questions-choice').value);
+  const numQuestions = parseInt(numQuestionsChoiceRef.value);
 
   if (currentQuestion < numQuestions) {
 
@@ -116,14 +128,14 @@ function displayNextQuestion() {
     currentQuestion += 1;
 
     // Set html to new value
-    document.querySelector('#question-number').innerHTML = `Q${currentQuestion}`;
+    questionNumberRef.innerHTML = `Q${currentQuestion}`;
 
     // Set question in html to next question in array
-    document.querySelector('#question').innerHTML = questionsArray[currentQuestion - 1].question;
+    questionRef.innerHTML = questionsArray[currentQuestion - 1].question;
     getAnswers(currentQuestion);
 
     // Set button text on html page
-    button.innerText = 'Submit Answer';
+    buttonRef.innerText = 'Submit Answer';
 
   } else {
     // Last question shown - show results
@@ -135,8 +147,8 @@ function displayNextQuestion() {
 function nextQuestion() {
 
   // Hide incorrect answer area and show answers area
-  document.querySelector('#incorrect-answer-area').classList.add('hide');
-  answersArea.classList.remove('hide');
+  incorrectAnswerAreaRef.classList.add('hide');
+  answersAreaRef.classList.remove('hide');
 
   // display next question
   displayNextQuestion();
@@ -150,36 +162,29 @@ function submitAnswer() {
   if (isCorrect()) {
 
     //Increase Correct score
-    const correctScore = document.querySelector('#correct');
-    correctScore.innerHTML = parseInt(correctScore.innerHTML) + 1;
+    correctRef.innerHTML = parseInt(correctRef.innerHTML) + 1;
     displayNextQuestion();
-
-    // Set button text on html page
-    //button.innerText = 'Submit Answer';
 
   } else {
 
     //Increase incorrect score
-    const incorrectScore = document.querySelector('#in-correct');
-    incorrectScore.innerHTML = parseInt(incorrectScore.innerHTML) + 1;
+    incorrectRef.innerHTML = parseInt(incorrectRef.innerHTML) + 1;
 
     // Set correct answer on html page
-    document.querySelector('#correct-answer').innerText = questionsArray[currentQuestion - 1].correctAnswer;;
+    correctAnswerRef.innerText = questionsArray[currentQuestion - 1].correctAnswer;;
 
     // Show incorrect answer area and hide answers
-    document.querySelector('#incorrect-answer-area').classList.remove('hide');
-    answersArea.classList.add('hide');
+    incorrectAnswerAreaRef.classList.remove('hide');
+    answersAreaRef.classList.add('hide');
 
     // Set button text on html page
-    button.innerText = 'Next Question';
+    buttonRef.innerText = 'Next Question';
   }
 }
 
 function buttonClicked() {
-  //Get current button text to decide action
-  const buttonText = button.innerText;
 
-  switch (buttonText) {
+  switch (buttonRef.innerText) {
     case 'Start Game': {
       startGame();
       break;
@@ -194,18 +199,18 @@ function buttonClicked() {
     }
     // Re-start 
     default: {
-      document.querySelector('#well-done-area').classList.add('hide');
-      document.querySelector('#incorrect-answer-area').classList.add('hide');
-      document.querySelector('#motivational-area').classList.remove('hide');
-      document.querySelector('#score-area').classList.add('hide');
-      button.innerText = 'Start Game';
-      document.querySelector('#correct').innerText = '0';
-      document.querySelector('#in-correct').innerText = '0';
+      wellDoneAreaRef.classList.add('hide');
+      incorrectAnswerAreaRef.classList.add('hide');
+      motivationalAreaRef.classList.remove('hide');
+      scoreAreaRef.classList.add('hide');
+      buttonRef.innerText = 'Start Game';
+      correctRef.innerText = '0';
+      incorrectRef.innerText = '0';
 
       // Disable preferences
-      document.querySelector('#topic-choice').disabled = false;
-      document.querySelector('#level-choice').disabled = false;
-      document.querySelector('#num-questions-choice').disabled = false;
+      topicChoiceRef.disabled = false;
+      levelChoiceRef.disabled = false;
+      numQuestionsChoiceRef.disabled = false;
       break;
     }
   }
@@ -213,30 +218,30 @@ function buttonClicked() {
 
 function restart() {
   
-  document.querySelector('#well-done-area').classList.add('hide');
-  document.querySelector('#incorrect-answer-area').classList.add('hide');
-  document.querySelector('#motivational-area').classList.remove('hide');
-  document.querySelector('#score-area').classList.add('hide');
-  document.querySelector('#answers-area').classList.add('hide');
-  document.querySelector('#question-area').classList.add('hide');
+  wellDoneAreaRef.classList.add('hide');
+  incorrectAnswerAreaRef.classList.add('hide');
+  motivationalAreaRef.classList.remove('hide');
+  scoreAreaRef.classList.add('hide');
+  answersAreaRef.classList.add('hide');
+  questionAreaRef.classList.add('hide');
 
-  button.innerText = 'Start Game';
-  document.querySelector('#correct').innerText = '0';
-  document.querySelector('#in-correct').innerText = '0';
+  buttonRef.innerText = 'Start Game';
+  correctRef.innerText = '0';
+  incorrectRef.innerText = '0';
 
   // Enable preferences
-  document.querySelector('#topic-choice').disabled = false;
-  document.querySelector('#level-choice').disabled = false;
-  document.querySelector('#num-questions-choice').disabled = false;
+  topicChoiceRef.disabled = false;
+  levelChoiceRef.disabled = false;
+  numQuestionsChoiceRef.disabled = false;
 }
 
 /* Fetch questions by calling an API and passing the mode required */
 async function fetchDataFromAPI(mode) {
 
   // Get Preferences from html page
-  const topicCode = document.querySelector('#topic-choice').value;
-  const level = document.querySelector('#level-choice').value;
-  const numQuestions = document.querySelector('#num-questions-choice').value;
+  const topicCode = topicChoiceRef.value;
+  const level = levelChoiceRef.value;
+  const numQuestions = numQuestionsChoiceRef.value;
 
   // Define urls
   const questionsUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level}`;
@@ -250,7 +255,7 @@ async function fetchDataFromAPI(mode) {
   } 
   catch (error) {
     alert('Unfortunately the questions site is currently unavailable. \nPlease try again later.');
-    button.disabled = true;
+    buttonRef.disabled = true;
   }
 }
 
@@ -287,8 +292,8 @@ async function getQuestions() {
   currentQuestion = 1;
 
   /* Populate the first question and answers */
-  document.querySelector('#question-number').innerHTML = 'Q1';
-  document.querySelector('#question').innerHTML = questionsArray[0].question;
+  questionNumberRef.innerHTML = 'Q1';
+  questionRef.innerHTML = questionsArray[0].question;
   getAnswers(currentQuestion);
 
 }
@@ -309,12 +314,12 @@ async function getCategories() {
   );
 
   // Update html page
-  document.querySelector('#topic-choice').innerHTML = html;
+  topicChoiceRef.innerHTML = html;
 }
 
 // Load categories from API as topics
 getCategories();
 
 // Set button click function
-button.addEventListener('click', buttonClicked);
-document.querySelector("#restart").addEventListener('click', restart);
+buttonRef.addEventListener('click', buttonClicked);
+restartRef.addEventListener('click', restart);
