@@ -1,16 +1,4 @@
-/**
- * The following program contains source code for a Fun Online Quiz Game.
- * It allows the player to select the level, topic or category and the number of questions they would like.
- * The categories available to the player are retrieved from an API called https://opentdb.com .
- * When the selections are made then the player clicks on the 'Start' button and the program retrieves the requested number of questions from the API.
- * The first question is displayed along with potential answers in a radio button format.
- * When the player clicks the 'Submit Answer' button then the chosen answer is checked against the actual correct answer and their score tracked.
- * If an incorrect answer is chosen then the correct answer is displayed and the button text changes to 'Next Question'.
- * If the correct answer is chosen then the next question is displayed.
- * Once all the questions have been answered the results will be displayed together with either a 'Well Done' message if they scored more than half correct 
- * or an 'Oh dear' message if they scored less than half.
- * At this point the button text changes to 'Have another go!' and if this is clicked the game resets and allows the player to change the parameters and start again.
- */
+
 "use strict";
 /*jshint strict: global */
 /*jshint esversion: 8 */
@@ -40,6 +28,10 @@ const correctRef = document.querySelector('#correct');
 const restartRef = document.querySelector('#restart');
 const completionMessageRef = document.querySelector('#well-done-message');
 
+/**
+ * Reads through the answers for the current question in the questions array and writes then to the html document as radio button elements.
+ * The first one is automatically selected to ensure an entry is made.
+ */
 function getAnswers() {
   let html = ``;
 
@@ -62,128 +54,134 @@ function getAnswers() {
   answersAreaRef.innerHTML = html;
 }
 
-/* Runs when Start Game button clicked */
+/**
+ * Runs when Start Game button clicked. Gets the questions etc from API. 
+ * Hides the motivational area, shows the scores, question area and answers.
+ * Sets button text to 'Submit Answer' and disables preferences.
+ */
 function startGame() {
 
-  /* Get questions etc from API */
   getQuestions();
 
-  // Hide motivational area
   motivationalAreaRef.classList.add('hide');
 
-  //Show the scores, question area and answers 
   questionAreaRef.classList.remove('hide');
   answersAreaRef.classList.remove('hide');
   scoreAreaRef.classList.remove('hide');
 
-  // Set button text to 'Submit Answer'
   buttonRef.innerText = `Submit Answer`;
 
-  // Disable preferences
   topicChoiceRef.disabled = true;
   levelChoiceRef.disabled = true;
   numQuestionsChoiceRef.disabled = true;
 
 }
 
+/**
+ * Gets the correct answer for the current question.
+ * Gets all the radio element answers for the question, 
+ * Identifies the chosen answer from the id of the checked answer e.g. if answer1 was checked answerSelectedId is set to 1.
+ * Gets the answer text from the questions array using answerSelectedId 
+ * @returns {boolean} true if text of the chosen answer same as correct answer in the questions array for that question
+ */
 function isCorrect() {
 
-  // Get the correct answer for that question
   const correctAnswer = questionsArray[currentQuestion - 1].correctAnswer;
-
-  // Get all the radio element answers for the question
   const answers = document.getElementsByName('answer');
 
-  // Identify the chosen answer from the id of the checked answer e.g. if answer1 was checked 1 is returned 
   const answerSelectedId = (Array.from(answers).find(answer => answer.checked).id).substring(6);
   const answerSelectedText = questionsArray[currentQuestion - 1].answers[answerSelectedId]; 
 
-  // If same as correct answer then isCorrect returns true else false
-  return (correctAnswer === answerSelectedText) ? true : false;
+  return (correctAnswer === answerSelectedText);
 
 }
 
+/**
+ * Sets the text of the well-done-message to 'Well Done' if score achieved is greater than half the number of questions.
+ * Displays the number of correct answers and the total number of questions.
+ * Displays the Well-done area
+ * Hides the question and answers areas
+ * Changes the button text to 'Have another Go!'  
+ */
 function showResults() {
 
   completionMessageRef.innerHTML = (incorrectRef.innerHTML > (numQuestionsChoiceRef.value/2)) ? `Oh dear` : `Well Done`;
 
   numberCorrectRef.innerHTML = correctRef.innerHTML;
   totalNumberRef.innerHTML = numQuestionsChoiceRef.value;
-  wellDoneAreaRef.classList.remove('hide');
 
-  // Hide the question and answers area
+  wellDoneAreaRef.classList.remove('hide');
   questionAreaRef.classList.add('hide');
   answersAreaRef.classList.add('hide');
 
-  // Change the text on the button to have another go
   buttonRef.innerText = `Have another go!`;
 }
 
+/**
+ *   Gets the number of questions requested
+ *   If the last question has been shown it calls the show results function otherwise it 
+ *     Increases the question number and displays new value
+ *     Displays the next question in array
+ *     Calls the function to display all the answers for that question
+ *     Changes the button text to 'Submit Answer'
+ */
 function displayNextQuestion() {
 
-  // Get num of questions required
   const numQuestions = parseInt(numQuestionsChoiceRef.value);
 
   if (currentQuestion < numQuestions) {
 
-    // Increase question number 
     currentQuestion += 1;
-
-    // Set html to new value
     questionNumberRef.innerHTML = `Q${currentQuestion}`;
-
-    // Set question in html to next question in array
     questionRef.innerHTML = questionsArray[currentQuestion - 1].question;
     getAnswers(currentQuestion);
-
-    // Set button text on html page
     buttonRef.innerText = `Submit Answer`;
 
   } else {
-    // Last question shown - show results
-    showResults();
+      showResults();
   }
 }
 
-/* Runs when Next Question button clicked */
+/**
+ * Runs when Next Question button clicked, hides the incorrect answer area and shows the answers area, calls display next question function
+ */
 function nextQuestion() {
 
-  // Hide incorrect answer area and show answers area
   incorrectAnswerAreaRef.classList.add('hide');
   answersAreaRef.classList.remove('hide');
-
-  // display next question
   displayNextQuestion();
 
 }
 
-/* Runs when Next Question button clicked */
+/*  */
+/**
+ * Runs when Submit Question button clicked
+ * if the last question was correct it increase the correct answers score and shows the next question
+ * otherwise it increases the incorrect anmswer score, shows the correct answer and changes the button text to Next Question
+ */
 function submitAnswer() {
 
-  // last question was correct - show next question
+  // 
   if (isCorrect()) {
 
-    //Increase Correct score
     correctRef.innerHTML = parseInt(correctRef.innerHTML) + 1;
     displayNextQuestion();
 
   } else {
 
-    //Increase incorrect score
     incorrectRef.innerHTML = parseInt(incorrectRef.innerHTML) + 1;
-
-    // Set correct answer on html page
     correctAnswerRef.innerText = questionsArray[currentQuestion - 1].correctAnswer;
-
-    // Show incorrect answer area and hide answers
     incorrectAnswerAreaRef.classList.remove('hide');
     answersAreaRef.classList.add('hide');
 
-    // Set button text on html page
     buttonRef.innerText = `Next Question`;
   }
 }
 
+/**
+ * Calls the appropriate function when the button is clicked based on its text value or
+ * resets the game to start again
+ */
 function buttonClicked() {
 
   switch (buttonRef.innerText) {
@@ -218,6 +216,10 @@ function buttonClicked() {
   }
 }
 
+/**
+ * Runs when the restart button is clicked.
+ * Resets the game to start again
+ */
 function restart() {
   
   wellDoneAreaRef.classList.add('hide');
@@ -237,15 +239,20 @@ function restart() {
   numQuestionsChoiceRef.disabled = false;
 }
 
-/* Fetch questions by calling an API and passing the mode required */
+/**
+ * If mode is categories then it returns a list of categories otherwise it returns a list of questions.
+ * For categories it fetches the list using the https://opentdb.com/api_category.php url
+ * For questions it retrieves the preferences made by the player and uses the https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level} url 
+ * If the site is unavailable then an alert message is shown and the button is disabled.
+ * @param {string} mode 
+ * @returns {Response} Results of the fetch requested, categories or questions
+ */
 async function fetchDataFromAPI(mode) {
 
-  // Get Preferences from html page
   const topicCode = topicChoiceRef.value;
   const level = levelChoiceRef.value;
   const numQuestions = numQuestionsChoiceRef.value;
 
-  // Define urls
   const questionsUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level}`;
   const categoriesUrl = `https://opentdb.com/api_category.php`;
 
@@ -263,7 +270,13 @@ Please try again later.`);
   }
 }
 
-/* Populate global questions array with questions etc from API */
+/**
+ * Calls the async function that fetches the questions using the API
+ * Reads through the returned questions and extracts the data required.
+ * It then pushes each entry to a global questions array.
+ * As the corrrect answer is always the last one returned, it is moved to a random position instead.
+ * Sets the current question to 1, populates the first question and calls the function to gets the answers 
+ */
 async function getQuestions() {
 
   const questions = await fetchDataFromAPI("questions");
@@ -276,39 +289,33 @@ async function getQuestions() {
     };
   });
 
-  // Clear the array first 
   questionsArray = [];
 
-  // Push each member of modifiedQuestions array to global array  
   modifiedQuestions.forEach(question =>  {
 
-    // As corrrect answer is always last move to a random position instead
     const randomPosition = Math.floor(Math.random() * question.answers.length);
     question.answers[question.answers.length - 1] = question.answers[randomPosition];
     question.answers[randomPosition] = question.correctAnswer;
 
-    // Push question to global array
     questionsArray.push(question);
-    }
-    );
+    });
 
-  // Set current question to 1
   currentQuestion = 1;
 
-  /* Populate the first question and answers */
   questionNumberRef.innerHTML = `Q1`;
   questionRef.innerHTML = questionsArray[0].question;
   getAnswers(currentQuestion);
 
 }
 
-/* Populate categories from API */
+/**
+ * Calls the async function that fetches the categories using an API passing in a mode of 'Categories'.
+ * Creates an html option for each category and updates the html page with the list
+ */
 async function getCategories() {
 
-  // Get Categories from API
   const categories = await fetchDataFromAPI("categories");
 
-  // Create the html dynamically for each category
   let html = `<select name="topic" value="General Knowledge" id="topic-choice" >`;
 
   categories.trivia_categories.forEach(
@@ -317,13 +324,12 @@ async function getCategories() {
     }
   );
 
-  // Update html page
   topicChoiceRef.innerHTML = html;
 }
 
 // Load categories from API as topics
 getCategories();
 
-// Set button click function
+// Set button click functions
 buttonRef.addEventListener('click', buttonClicked);
 restartRef.addEventListener('click', restart);
