@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <title>Fun Online Quiz Game</title>
 </head>
 <body>
@@ -17,7 +16,10 @@
             <h1>Fun Online Quiz Game</h1>
             <nav>
                 <ul>
-                    <li id="restart"><i class="fas fa-redo-alt"></i>   Restart</li>
+                    <li id="restart">
+                        <i class="fas fa-redo-alt"></i>
+                           Restart
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -49,10 +51,14 @@
             <!-- Score Area -->
             <div id="score-area" class="area hide">
                 <div>
-                    <label>Correct Answers: <span id="correct">0</span></label>
+                    <label>Correct Answers: 
+                        <span id="correct"></span>
+                    </label>
                 </div>
                 <div>
-                    <label>Incorrect Answers: <span id="in-correct">0</span></label>
+                    <label>Incorrect Answers: 
+                        <span id="in-correct"></span>
+                    </label>
                 </div>
             </div>
 
@@ -88,8 +94,14 @@
 
             <!-- Well done Area-->
             <div id="well-done-area" class="area hide">
-                <p><span id="well-done-message">Well done.</span></p>
-                <p>You scored <span id="number-correct">X</span> out of <span id="total-number">Y</span>.</p>
+                <p>
+                    <span id="well-done-message">Well done.</span>
+                </p>
+                <p>You scored 
+                    <span id="number-correct"></span>
+                     out of 
+                    <span id="total-number"></span>.
+                </p>
             </div>
 
             <!-- Button Area -->
