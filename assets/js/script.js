@@ -39,7 +39,7 @@ const restartRef = document.querySelector('#restart');
 const completionMessageRef = document.querySelector('#well-done-message');
 
 function getAnswers() {
-  let html = '';
+  let html = ``;
 
   for (let i = 0; i < questionsArray[currentQuestion - 1].answers.length; i++) {
     if (questionsArray[currentQuestion - 1].answers[i]) {
@@ -75,7 +75,7 @@ function startGame() {
   scoreAreaRef.classList.remove('hide');
 
   // Set button text to 'Submit Answer'
-  buttonRef.innerText = "Submit Answer";
+  buttonRef.innerText = `Submit Answer`;
 
   // Disable preferences
   topicChoiceRef.disabled = true;
@@ -103,7 +103,7 @@ function isCorrect() {
 
 function showResults() {
 
-  completionMessageRef.innerHTML = (incorrectRef.innerHTML > (numQuestionsChoiceRef.value/2)) ? 'Oh dear' : 'Well Done';
+  completionMessageRef.innerHTML = (incorrectRef.innerHTML > (numQuestionsChoiceRef.value/2)) ? `Oh dear` : `Well Done`;
 
   numberCorrectRef.innerHTML = correctRef.innerHTML;
   totalNumberRef.innerHTML = numQuestionsChoiceRef.value;
@@ -114,7 +114,7 @@ function showResults() {
   answersAreaRef.classList.add('hide');
 
   // Change the text on the button to have another go
-  buttonRef.innerText = 'Have another go!';
+  buttonRef.innerText = `Have another go!`;
 }
 
 function displayNextQuestion() {
@@ -135,7 +135,7 @@ function displayNextQuestion() {
     getAnswers(currentQuestion);
 
     // Set button text on html page
-    buttonRef.innerText = 'Submit Answer';
+    buttonRef.innerText = `Submit Answer`;
 
   } else {
     // Last question shown - show results
@@ -178,7 +178,7 @@ function submitAnswer() {
     answersAreaRef.classList.add('hide');
 
     // Set button text on html page
-    buttonRef.innerText = 'Next Question';
+    buttonRef.innerText = `Next Question`;
   }
 }
 
@@ -203,9 +203,9 @@ function buttonClicked() {
       incorrectAnswerAreaRef.classList.add('hide');
       motivationalAreaRef.classList.remove('hide');
       scoreAreaRef.classList.add('hide');
-      buttonRef.innerText = 'Start Game';
-      correctRef.innerText = '0';
-      incorrectRef.innerText = '0';
+      buttonRef.innerText = `Start Game`;
+      correctRef.innerText = `0`;
+      incorrectRef.innerText = `0`;
 
       // Disable preferences
       topicChoiceRef.disabled = false;
@@ -225,9 +225,9 @@ function restart() {
   answersAreaRef.classList.add('hide');
   questionAreaRef.classList.add('hide');
 
-  buttonRef.innerText = 'Start Game';
-  correctRef.innerText = '0';
-  incorrectRef.innerText = '0';
+  buttonRef.innerText = `Start Game`;
+  correctRef.innerText = `0`;
+  incorrectRef.innerText = `0`;
 
   // Enable preferences
   topicChoiceRef.disabled = false;
@@ -245,7 +245,7 @@ async function fetchDataFromAPI(mode) {
 
   // Define urls
   const questionsUrl = `https://opentdb.com/api.php?amount=${numQuestions}&category=${topicCode}&difficulty=${level}`;
-  const categoriesUrl = 'https://opentdb.com/api_category.php';
+  const categoriesUrl = `https://opentdb.com/api_category.php`;
 
   const url = (mode === "categories") ? categoriesUrl : questionsUrl;
 
@@ -254,7 +254,9 @@ async function fetchDataFromAPI(mode) {
     return await result.json();
   } 
   catch (error) {
-    alert('Unfortunately the questions site is currently unavailable. \nPlease try again later.');
+    alert(
+      `Unfortunately the questions site is currently unavailable. 
+Please try again later.`);
     buttonRef.disabled = true;
   }
 }
@@ -292,7 +294,7 @@ async function getQuestions() {
   currentQuestion = 1;
 
   /* Populate the first question and answers */
-  questionNumberRef.innerHTML = 'Q1';
+  questionNumberRef.innerHTML = `Q1`;
   questionRef.innerHTML = questionsArray[0].question;
   getAnswers(currentQuestion);
 
@@ -305,7 +307,7 @@ async function getCategories() {
   const categories = await fetchDataFromAPI("categories");
 
   // Create the html dynamically for each category
-  let html = '<select name="topic" value="General Knowledge" id="topic-choice" >';
+  let html = `<select name="topic" value="General Knowledge" id="topic-choice" >`;
 
   categories.trivia_categories.forEach(
     category => {
