@@ -88,7 +88,7 @@ It has a button control to move to the next question and a restart option.
 
   - The incorrect answer section appears when the wrong answer is selected and displays the right answer.
 
-![Incorrect Answer Area](docs/images/IncorrectAnswerArea.png)
+![Incorrect Answer Area](docs/images/ButtonAreaNextQuestion.png)
 
 
 - __The Well Done section__
@@ -105,7 +105,7 @@ It has a button control to move to the next question and a restart option.
   - If they get a question wrong then the button will display the text 'Next Question'. If they get it right it will show 'Submit Answer'.
 
 ![Button Area Start](docs/images/ButtonAreaStart.png) 
-![Button Area Next Question](docs/images/ButtonAreaNextQuestion.png)
+![Button Area Submit Question](docs/images/ButtonAreaSubmitQuestion.png)
 ![Button Area Have another go](docs/images/ButtonAreaHaveAnotherGo.png)  
 
 
@@ -215,14 +215,11 @@ For local deployment
   - You can then choose to <b>Open with GitHub Desktop</b>, <b>Open with Visual Stuio</b> or <b>Download the source</b> as a zip file.
   - If you download the zip file, you can extract the contents to a folder of your choice and open the source using any editor e.g Visual Studio Code 
 
-
 ## Credits 
 
 For code inspiration, help and advice,
 * [Simen Daehlin](https://github.com/Eventyret "Simen Daehlin")
 * [JavaScript Fetch API](https://www.javascripttutorial.net/javascript-fetch-API, "JavaScript Fetch API")
-
-- 
 
 ### Content 
 
