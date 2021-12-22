@@ -7,7 +7,7 @@ It has a score tracking system that keeps track of the score as they go through 
 They can restart the game at any time if they choose to change the topic or level.
 The game uses an API to get the requested number of questions and the categories available to be selected. https://opentdb.com
 
-![Responsive Displays](docs/images/FOQG_Mockup.png)
+![Responsive Displays](docs/images/foqg-mockup.png)
 
 # Wireframes
 I have used [Balsamic](https://balsamiq.com/wireframes/ "Balsamic") to develop some wireframes for my website. 
@@ -19,13 +19,13 @@ The wireframes are below:
 ### [Desktop Wireframe](docs/wireframes/Desktop.png "Desktop Wireframe")
 
 
-## Features 
+# Features 
 
 The site consists of a single page with a large heading, a preference area, a score area, a question area, and an answer & feedback area. 
 It has a button control to move to the next question and a restart option.
 
 
-### Existing Features
+## Existing Features
 
 - __The Fun Quiz Heading__
 
@@ -33,7 +33,7 @@ It has a button control to move to the next question and a restart option.
   - It also gives the page a 'fun' feel.
 
 - __The Nav bar__
-  - The Navigation bar is an unordered list containing a single item. Restart.
+  - The Navigation bar is an unordered list containing a single item - Restart.
   - Here it is clearly visible and always available to the player but it is also out of the way of the main button and doesn't interfere with the game.
   - It takes the player back to the Start page where the preferences are enabled and the player can re-pick.
 
@@ -109,9 +109,10 @@ It has a button control to move to the next question and a restart option.
 ![Button Area Have another go](docs/images/ButtonAreaHaveAnotherGo.png)  
 
 
-### Features Left to Implement
+## Features Left to Implement
 
 - Add another game like matching images.
+
 
 # Technologies used
 
@@ -130,7 +131,7 @@ It has a button control to move to the next question and a restart option.
 * [Open Trivia Database](https://opentdb.com/ "Open Trivia Database")
 
 
-## Testing 
+# Testing 
 
 To test this site I did the following:-
 First I tested the site on a mobile device and then on a tablet and laptop.
@@ -196,7 +197,7 @@ The button was disabled correctly preventing confusion.
     - Accessibility score 97
     - See [Results](docs/images/LightHouseResults.png)
      
-## Deployment
+# Deployment
 
 I created a repository in github for this project https://github.com/evelynfoy/fun-online-quiz-game
 I then used the gitpod editor to build it.
@@ -215,13 +216,13 @@ For local deployment
   - You can then choose to <b>Open with GitHub Desktop</b>, <b>Open with Visual Stuio</b> or <b>Download the source</b> as a zip file.
   - If you download the zip file, you can extract the contents to a folder of your choice and open the source using any editor e.g Visual Studio Code 
 
-## Credits 
+# Credits 
 
 For code inspiration, help and advice,
 * [Simen Daehlin](https://github.com/Eventyret "Simen Daehlin")
 * [JavaScript Fetch API](https://www.javascripttutorial.net/javascript-fetch-API, "JavaScript Fetch API")
 
-### Content 
+## Content 
 
 For content and style inspiration,
 
